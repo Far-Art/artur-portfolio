@@ -1,0 +1,94 @@
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+
+.app-backdrop {
+  position: fixed;
+  inset: 0;
+  overflow: clip;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.app-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(24, 22, 29, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(24, 22, 29, 0.05) 1px, transparent 1px);
+  background-size: 5rem 5rem;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.24), transparent 72%);
+}
+
+.app-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(90px);
+  opacity: 0.8;
+  animation: float-orb 14s ease-in-out infinite;
+}
+
+.app-orb-one {
+  width: 28rem;
+  height: 28rem;
+  top: -6rem;
+  left: -8rem;
+  background: rgba(15, 118, 110, 0.22);
+}
+
+.app-orb-two {
+  width: 24rem;
+  height: 24rem;
+  top: 14rem;
+  right: -4rem;
+  background: rgba(201, 107, 44, 0.2);
+  animation-delay: -5s;
+}
+
+.app-orb-three {
+  width: 18rem;
+  height: 18rem;
+  bottom: 6rem;
+  left: 45%;
+  background: rgba(22, 78, 99, 0.16);
+  animation-delay: -9s;
+}
+
+.app-main {
+  flex: 1;
+  width: min(100%, 88rem);
+  margin: 0 auto;
+  padding: 0 1.25rem 4rem;
+}
+
+@keyframes float-orb {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -1.5rem, 0) scale(1.03);
+  }
+}
+
+@media (max-width: 768px) {
+  .app-main {
+    padding-inline: 1rem;
+    padding-bottom: 3rem;
+  }
+
+  .app-grid {
+    background-size: 3.5rem 3.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-orb {
+    animation: none;
+  }
+}
