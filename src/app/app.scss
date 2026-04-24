@@ -1,4 +1,4 @@
-.app-shell {
+.fa-shell {
   position: relative;
   min-height: 100vh;
   display: flex;
@@ -6,7 +6,7 @@
   isolation: isolate;
 }
 
-.app-backdrop {
+.fa-backdrop {
   position: fixed;
   inset: 0;
   overflow: clip;
@@ -14,7 +14,7 @@
   z-index: -1;
 }
 
-.app-grid {
+.fa-grid {
   position: absolute;
   inset: 0;
   background-image:
@@ -24,7 +24,7 @@
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.24), transparent 72%);
 }
 
-.app-orb {
+.fa-orb {
   position: absolute;
   border-radius: 999px;
   filter: blur(90px);
@@ -32,7 +32,7 @@
   animation: float-orb 14s ease-in-out infinite;
 }
 
-.app-orb-one {
+.fa-orb-one {
   width: 28rem;
   height: 28rem;
   top: -6rem;
@@ -40,7 +40,7 @@
   background: rgba(15, 118, 110, 0.22);
 }
 
-.app-orb-two {
+.fa-orb-two {
   width: 24rem;
   height: 24rem;
   top: 14rem;
@@ -49,7 +49,7 @@
   animation-delay: -5s;
 }
 
-.app-orb-three {
+.fa-orb-three {
   width: 18rem;
   height: 18rem;
   bottom: 6rem;
@@ -58,7 +58,7 @@
   animation-delay: -9s;
 }
 
-.app-main {
+.fa-main {
   flex: 1;
   width: min(100%, 88rem);
   margin: 0 auto;
@@ -77,18 +77,18 @@
 }
 
 @media (max-width: 768px) {
-  .app-main {
+  .fa-main {
     padding-inline: 1rem;
     padding-bottom: 3rem;
   }
 
-  .app-grid {
+  .fa-grid {
     background-size: 3.5rem 3.5rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .app-orb {
+  .fa-orb {
     animation: none;
   }
 }

@@ -5,7 +5,7 @@ import {ContactService} from '../../services/contact.service';
 
 
 @Component({
-    selector: 'app-contact',
+    selector: 'fa-contact',
     imports: [ReactiveFormsModule],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './contact.component.html',

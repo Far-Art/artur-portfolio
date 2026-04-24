@@ -39,7 +39,7 @@ interface ProcessStep {
 }
 
 @Component({
-    selector: 'app-home',
+    selector: 'fa-home',
     imports: [RouterLink, NgOptimizedImage],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './home.component.html',

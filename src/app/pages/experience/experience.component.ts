@@ -4,7 +4,7 @@ import {EXPERIENCES} from '../../data/experience.data';
 
 
 @Component({
-    selector: 'app-experience',
+    selector: 'fa-experience',
     imports: [DatePipe],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './experience.component.html',

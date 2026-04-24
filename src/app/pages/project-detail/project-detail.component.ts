@@ -6,7 +6,7 @@ import {ProjectsService} from '../../services/projects.service';
 
 
 @Component({
-    selector: 'app-project-detail',
+    selector: 'fa-project-detail',
     imports: [RouterLink, DatePipe],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './project-detail.component.html',

@@ -3,7 +3,7 @@ import {SOCIAL_LINKS} from '../../../data/social.data';
 
 
 @Component({
-    selector: 'app-footer',
+    selector: 'fa-footer',
     imports: [],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './footer.component.html',

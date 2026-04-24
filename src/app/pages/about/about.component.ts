@@ -5,7 +5,7 @@ import {SKILL_CATEGORIES} from '../../models/skill.model';
 
 
 @Component({
-    selector: 'app-about',
+    selector: 'fa-about',
     imports: [RouterLink],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './about.component.html',

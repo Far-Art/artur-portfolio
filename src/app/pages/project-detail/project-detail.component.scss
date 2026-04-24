@@ -14,7 +14,7 @@
     color: var(--text-primary);
     text-decoration: none;
     font-weight: 600;
-    font-family: 'IBM Plex Mono', monospace;
+
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
@@ -36,7 +36,7 @@
 .card-category {
     margin: 0;
     color: var(--text-tertiary);
-    font-family: 'IBM Plex Mono', monospace;
+
     font-size: 0.8rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -50,7 +50,7 @@
     background: var(--secondary-color-light);
     border: 1px solid rgba(201, 107, 44, 0.18);
     color: var(--secondary-color);
-    font-family: 'IBM Plex Mono', monospace;
+
     font-size: 0.78rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -128,7 +128,7 @@
     background: var(--bg-elevated);
     border: 1px solid var(--border-color);
     border-radius: 999px;
-    font-family: 'IBM Plex Mono', monospace;
+
     color: var(--text-secondary);
 }
 

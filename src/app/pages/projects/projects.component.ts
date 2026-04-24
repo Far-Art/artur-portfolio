@@ -5,7 +5,7 @@ import {ProjectsService} from '../../services/projects.service';
 
 
 @Component({
-    selector: 'app-projects',
+    selector: 'fa-projects',
     imports: [RouterLink],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './projects.component.html',

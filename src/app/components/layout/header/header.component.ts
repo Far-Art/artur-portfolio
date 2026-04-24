@@ -6,7 +6,7 @@ import {ThemeService} from '../../../services/theme.service';
 
 
 @Component({
-    selector: 'app-header',
+    selector: 'fa-header',
     imports: [RouterLink, RouterLinkActive, NgOptimizedImage],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './header.component.html',
