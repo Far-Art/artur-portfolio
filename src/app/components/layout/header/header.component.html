@@ -1,0 +1,59 @@
+<header
+    class="header"
+    [style.opacity]="headerOpacity()"
+    [style.transform]="headerTransform()"
+    [style.pointer-events]="headerPointerEvents()"
+>
+    <nav class="nav-container surface-panel" aria-label="Primary">
+        <a
+            routerLink="/"
+            class="logo"
+            aria-label="Artur portfolio home"
+            [style.opacity]="headerBrandOpacity()"
+        >
+            <img
+                ngSrc="artur_farmanov_logo_plain.svg"
+                width="64"
+                height="64"
+                priority
+                alt=""
+                aria-hidden="true"
+                class="logo-image"
+            />
+            <span class="logo-copy">
+        <span class="logo-title">Artur Farmanov</span>
+        <span class="logo-subtitle">Software Developer</span>
+      </span>
+        </a>
+
+        <ul class="nav-links" role="list">
+            <li>
+                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a routerLink="/about" routerLinkActive="active">About</a>
+            </li>
+            <li>
+                <a routerLink="/projects" routerLinkActive="active">Projects</a>
+            </li>
+            <li>
+                <a routerLink="/experience" routerLinkActive="active">Experience</a>
+            </li>
+            <li>
+                <a routerLink="/contact" routerLinkActive="active">Contact</a>
+            </li>
+        </ul>
+
+        <button
+            class="theme-toggle"
+            type="button"
+            (click)="toggleTheme()"
+            [attr.aria-label]="'Switch to ' + (theme() === 'light' ? 'dark' : 'light') + ' theme'"
+            [attr.aria-pressed]="theme() === 'dark'"
+        >
+            <span class="theme-label">{{ theme() === 'light' ? 'Dark mode' : 'Light mode' }}</span>
+        </button>
+    </nav>
+</header>

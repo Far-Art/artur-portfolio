@@ -1,0 +1,55 @@
+<div class="experience">
+    <div class="container">
+        <span class="eyebrow">Career timeline</span>
+        <h1 class="page-title">Work shaped through product delivery.</h1>
+        <p class="page-description">
+            The experience section reads like a release log: responsibility, outcomes, and stack
+            choices, without decorative noise getting in the way.
+        </p>
+
+        <div class="timeline">
+            @for (exp of experiences; track exp.id) {
+                <article class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="experience-card surface-panel">
+                        <div class="experience-header">
+                            <h2 class="position">{{ exp.position }}</h2>
+                            <h3 class="company">{{ exp.company }}</h3>
+                            <div class="experience-meta">
+                                <span class="location">Location: {{ exp.location }}</span>
+                                <span class="duration">
+                  Timeline: {{ exp.startDate | date: 'MMM yyyy' }} -
+                                    @if (exp.current) {
+                                        <span class="current-badge">Present</span>
+                                    } @else {
+                                        {{ exp.endDate | date: 'MMM yyyy' }}
+                                    }
+                </span>
+                            </div>
+                        </div>
+
+                        <p class="description">{{ exp.description }}</p>
+
+                        <div class="achievements">
+                            <h4 class="achievements-title">Key achievements</h4>
+                            <ul class="achievements-list">
+                                @for (achievement of exp.achievements; track achievement) {
+                                    <li>{{ achievement }}</li>
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="technologies">
+                            <h4 class="tech-title">Technologies</h4>
+                            <div class="tech-tags">
+                                @for (tech of exp.technologies; track tech) {
+                                    <span class="tech-tag">{{ tech }}</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            }
+        </div>
+    </div>
+</div>

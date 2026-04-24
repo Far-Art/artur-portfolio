@@ -1,0 +1,93 @@
+@if (project(); as project) {
+    <div class="project-detail">
+        <div class="container">
+            <a routerLink="/projects" class="back-link">Back to projects</a>
+
+            <header class="project-hero surface-panel">
+                <div class="project-hero-copy">
+                    <p class="project-category">{{ projectCategoryLabel(project.category) }}</p>
+                    <h1 class="project-title">{{ project.title }}</h1>
+                    <p class="project-description">{{ project.fullDescription }}</p>
+                </div>
+
+                <div class="project-summary">
+                    @if (project.featured) {
+                        <span class="featured-badge">Featured case study</span>
+                    }
+                    <div class="summary-card">
+                        <p class="summary-label">Timeline</p>
+                        <p class="summary-value">
+                            {{ project.startDate | date: 'MMM yyyy' }}
+                            @if (project.endDate) {
+                                to {{ project.endDate | date: 'MMM yyyy' }}
+                            } @else {
+                                to present
+                            }
+                        </p>
+                    </div>
+                    <div class="summary-card">
+                        <p class="summary-label">Stack shape</p>
+                        <p class="summary-value">{{ project.technologies.length }} core technologies</p>
+                    </div>
+                </div>
+            </header>
+
+            <div class="project-actions">
+                @if (project.githubUrl) {
+                    <a [href]="project.githubUrl" target="_blank" rel="noopener" class="action-link">
+                        View GitHub
+                    </a>
+                }
+                @if (project.liveUrl) {
+                    <a [href]="project.liveUrl" target="_blank" rel="noopener" class="action-link">
+                        Live demo
+                    </a>
+                }
+            </div>
+
+            @if (project.highlights.length > 0) {
+                <section class="highlights">
+                    <h2 class="section-title">Key highlights</h2>
+                    <ul class="highlights-list">
+                        @for (highlight of project.highlights; track highlight) {
+                            <li>{{ highlight }}</li>
+                        }
+                    </ul>
+                </section>
+            }
+
+            <section class="technologies">
+                <h2 class="section-title">Technologies used</h2>
+                <div class="tech-grid">
+                    @for (tech of project.technologies; track tech) {
+                        <div class="tech-item">{{ tech }}</div>
+                    }
+                </div>
+            </section>
+
+            @if (relatedProjects().length > 0) {
+                <section class="related-projects">
+                    <h2 class="section-title">Related projects</h2>
+                    <div class="projects-grid">
+                        @for (relatedProject of relatedProjects(); track relatedProject.id) {
+                            <article class="project-card surface-panel">
+                                <p class="card-category">{{ projectCategoryLabel(relatedProject.category) }}</p>
+                                <h3 class="card-title">{{ relatedProject.title }}</h3>
+                                <p class="card-description">{{ relatedProject.shortDescription }}</p>
+                                <a [routerLink]="['/projects', relatedProject.id]" class="card-link">View project</a>
+                            </article>
+                        }
+                    </div>
+                </section>
+            }
+        </div>
+    </div>
+} @else {
+    <div class="not-found">
+        <div class="container surface-panel">
+            <h1>Project not found</h1>
+            <p>The project you're looking for doesn't exist.</p>
+            <a routerLink="/projects" class="action-link">Back to projects</a>
+        </div>
+    </div>
+}

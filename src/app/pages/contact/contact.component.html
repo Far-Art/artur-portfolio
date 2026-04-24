@@ -1,0 +1,143 @@
+<div class="contact">
+    <div class="container">
+        <h1 class="page-title">Get In Touch</h1>
+        <p class="page-description">
+            Have a project in mind or want to collaborate? I'd love to hear from you!
+        </p>
+
+        <div class="contact-content">
+            <div class="form-section">
+                <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input
+                            type="text"
+                            id="name"
+                            formControlName="name"
+                            placeholder="Your name"
+                            [class.error]="isFieldInvalid('name')"
+                        />
+                        @if (isFieldInvalid('name')) {
+                            <span class="error-message">Name is required</span>
+                        }
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input
+                            type="email"
+                            id="email"
+                            formControlName="email"
+                            placeholder="your.email@example.com"
+                            [class.error]="isFieldInvalid('email')"
+                        />
+                        @if (isFieldInvalid('email')) {
+                            <span class="error-message">
+                @if (contactForm.get('email')?.hasError('required')) {
+                    Email is required
+                } @else if (contactForm.get('email')?.hasError('email')) {
+                    Please enter a valid email
+                }
+              </span>
+                        }
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input
+                            type="text"
+                            id="subject"
+                            formControlName="subject"
+                            placeholder="Project discussion, collaboration, etc."
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea
+                            id="message"
+                            formControlName="message"
+                            rows="6"
+                            placeholder="Tell me about your project or inquiry..."
+                            [class.error]="isFieldInvalid('message')"
+                        ></textarea>
+                        @if (isFieldInvalid('message')) {
+                            <span class="error-message">Message is required</span>
+                        }
+                    </div>
+
+                    @if (submitMessage()) {
+                        <div
+                            class="submit-message"
+                            [class.success]="submitSuccess()"
+                            [class.error]="!submitSuccess()"
+                        >
+                            {{ submitMessage() }}
+                        </div>
+                    }
+
+                    <button type="submit" class="submit-btn" [disabled]="contactForm.invalid || isSubmitting()">
+                        @if (isSubmitting()) {
+                            Sending...
+                        } @else {
+                            Send Message
+                        }
+                    </button>
+                </form>
+            </div>
+
+            <div class="info-section">
+                <div class="info-card">
+                    <h2 class="info-title">Let's Connect</h2>
+                    <p class="info-description">
+                        I'm always open to discussing new projects, creative ideas, or opportunities to be part
+                        of your visions.
+                    </p>
+
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">@</div>
+                            <div class="method-content">
+                                <h3 class="method-title">Email</h3>
+                                <a href="mailto:your.email@example.com" class="method-link">your.email@example.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="method-icon">Loc</div>
+                            <div class="method-content">
+                                <h3 class="method-title">Location</h3>
+                                <p class="method-text">Your City, Country</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="method-icon">Open</div>
+                            <div class="method-content">
+                                <h3 class="method-title">Availability</h3>
+                                <p class="method-text">Open for opportunities</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-section">
+                        <h3 class="social-title">Find me on</h3>
+                        <div class="social-links">
+                            @for (link of socialLinks; track link.platform) {
+                                <a
+                                    [href]="link.url"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="social-link"
+                                    [attr.aria-label]="link.platform"
+                                >
+                                    {{ link.platform }}
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

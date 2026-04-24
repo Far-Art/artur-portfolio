@@ -1,297 +1,32 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { ProjectCategory, PROJECT_CATEGORIES } from '../../models/project.model';
-import { ProjectsService } from '../../services/projects.service';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {RouterLink} from '@angular/router';
+import {ProjectCategory, PROJECT_CATEGORIES} from '../../models/project.model';
+import {ProjectsService} from '../../services/projects.service';
+
 
 @Component({
-  selector: 'app-projects',
-  imports: [RouterLink],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <div class="projects">
-      <div class="container">
-        <span class="eyebrow">Selected builds</span>
-        <h1 class="page-title">Projects framed as product stories.</h1>
-        <p class="page-description">
-          A strong portfolio does more than list technologies. It explains the type of product, the
-          outcome it aimed for, and the engineering choices behind it.
-        </p>
-
-        <div class="filters">
-          <button
-            class="filter-btn"
-            type="button"
-            [class.active]="currentCategory() === 'all'"
-            (click)="setCategory('all')"
-          >
-            All Projects
-          </button>
-          @for (category of categories; track category.key) {
-            <button
-              class="filter-btn"
-              type="button"
-              [class.active]="currentCategory() === category.key"
-              (click)="setCategory(category.key)"
-            >
-              {{ category.label }}
-            </button>
-          }
-        </div>
-
-        <div class="projects-grid">
-          @for (project of filteredProjects(); track project.id) {
-            <article class="project-card surface-panel">
-              <div class="project-header">
-                <p class="project-category">{{ getCategoryLabel(project.category) }}</p>
-                @if (project.featured) {
-                  <div class="featured-badge">Featured</div>
-                }
-              </div>
-
-              <h2 class="project-title">{{ project.title }}</h2>
-              <p class="project-description">{{ project.shortDescription }}</p>
-
-              <div class="project-visual" aria-hidden="true">
-                <span>Build signal</span>
-                <strong>{{ project.highlights[0] }}</strong>
-                <span>{{ project.technologies.length }} technologies in stack</span>
-              </div>
-
-              <div class="project-tech">
-                @for (tech of project.technologies; track tech) {
-                  <span class="tech-badge">{{ tech }}</span>
-                }
-              </div>
-
-              <div class="project-footer">
-                <a [routerLink]="['/projects', project.id]" class="project-link">Read case study</a>
-                <div class="project-links">
-                  @if (project.githubUrl) {
-                    <a [href]="project.githubUrl" target="_blank" rel="noopener" class="project-link">
-                      GitHub
-                    </a>
-                  }
-                  @if (project.liveUrl) {
-                    <a [href]="project.liveUrl" target="_blank" rel="noopener" class="project-link">
-                      Live demo
-                    </a>
-                  }
-                </div>
-              </div>
-            </article>
-          } @empty {
-            <div class="empty-state surface-panel">
-              <p>No projects found in this category.</p>
-            </div>
-          }
-        </div>
-      </div>
-    </div>
-  `,
-  styles: `
-    .projects {
-      min-height: 100vh;
-      padding: 3rem 0 1rem;
-    }
-
-    .container {
-      display: grid;
-      gap: 1.5rem;
-    }
-
-    .page-title {
-      margin: 0;
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      line-height: 0.96;
-      letter-spacing: -0.06em;
-      max-width: 14ch;
-    }
-
-    .page-description {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      margin: 0;
-      max-width: 42rem;
-    }
-
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .filter-btn {
-      padding: 0.75rem 1.2rem;
-      border: 1px solid var(--border-color);
-      background: var(--bg-elevated);
-      color: var(--text-secondary);
-      border-radius: 999px;
-      font-weight: 600;
-      transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        color 0.25s ease,
-        background-color 0.25s ease;
-    }
-
-    .filter-btn:hover {
-      border-color: var(--primary-color);
-      color: var(--primary-color);
-      transform: translateY(-1px);
-    }
-
-    .filter-btn.active {
-      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-      border-color: transparent;
-      color: white;
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-      gap: 1rem;
-    }
-
-    .project-card {
-      display: grid;
-      gap: 1rem;
-      padding: 1.4rem;
-      border-radius: var(--radius-large);
-    }
-
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-medium);
-    }
-
-    .project-header,
-    .project-footer,
-    .project-links {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .featured-badge,
-    .project-category,
-    .project-visual span,
-    .project-link {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.8rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .featured-badge {
-      padding: 0.4rem 0.7rem;
-      border-radius: 999px;
-      background: var(--secondary-color-light);
-      border: 1px solid rgba(201, 107, 44, 0.18);
-      color: var(--secondary-color);
-    }
-
-    .project-category {
-      margin: 0;
-      color: var(--text-tertiary);
-    }
-
-    .project-title {
-      margin: 0;
-      font-size: 1.8rem;
-      line-height: 1;
-      letter-spacing: -0.05em;
-    }
-
-    .project-description {
-      color: var(--text-secondary);
-      margin: 0;
-      line-height: 1.7;
-    }
-
-    .project-visual {
-      display: grid;
-      gap: 0.45rem;
-      padding: 1.1rem;
-      border-radius: 1.4rem;
-      background:
-        linear-gradient(135deg, var(--primary-color-light), transparent),
-        linear-gradient(135deg, rgba(22, 78, 99, 0.14), rgba(201, 107, 44, 0.1));
-      border: 1px solid var(--border-color);
-    }
-
-    .project-visual strong {
-      font-size: 1.4rem;
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-    }
-
-    .project-visual span {
-      color: var(--text-tertiary);
-    }
-
-    .project-tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .tech-badge {
-      padding: 0.45rem 0.75rem;
-      background: var(--bg-elevated);
-      color: var(--text-secondary);
-      border-radius: 999px;
-      border: 1px solid var(--border-color);
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.84rem;
-    }
-
-    .project-link {
-      color: var(--text-primary);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .project-link:hover {
-      color: var(--primary-color);
-    }
-
-    .empty-state {
-      grid-column: 1 / -1;
-      text-align: left;
-      padding: 2rem;
-      color: var(--text-secondary);
-      border-radius: var(--radius-large);
-    }
-
-    @media (max-width: 768px) {
-      .filters {
-        gap: 0.5rem;
-      }
-
-      .filter-btn {
-        padding: 0.5rem 1rem;
-      }
-    }
-  `,
+    selector: 'app-projects',
+    imports: [RouterLink],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './projects.component.html',
+    styleUrl: './projects.component.scss'
 })
 export class ProjectsComponent {
-  private readonly projectsService = inject(ProjectsService);
+    private readonly projectsService = inject(ProjectsService);
 
-  readonly filteredProjects = this.projectsService.filteredProjects;
-  readonly currentCategory = this.projectsService.currentCategory;
+    readonly filteredProjects = this.projectsService.filteredProjects;
+    readonly currentCategory = this.projectsService.currentCategory;
 
-  readonly categories = Object.entries(PROJECT_CATEGORIES).map(([key, label]) => ({
-    key: key as ProjectCategory,
-    label,
-  }));
+    readonly categories = Object.entries(PROJECT_CATEGORIES).map(([key, label]) => ({
+        key: key as ProjectCategory,
+        label
+    }));
 
-  setCategory(category: ProjectCategory | 'all'): void {
-    this.projectsService.setCategory(category);
-  }
+    setCategory(category: ProjectCategory | 'all'): void {
+        this.projectsService.setCategory(category);
+    }
 
-  getCategoryLabel(category: ProjectCategory): string {
-    return PROJECT_CATEGORIES[category];
-  }
+    getCategoryLabel(category: ProjectCategory): string {
+        return PROJECT_CATEGORIES[category];
+    }
 }

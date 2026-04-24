@@ -1,0 +1,211 @@
+.project-detail,
+.not-found {
+    min-height: 100vh;
+    padding: 3rem 0 1rem;
+}
+
+.container {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.back-link {
+    display: inline-flex;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.back-link:hover {
+    color: var(--primary-color);
+}
+
+.project-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.8fr);
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: var(--radius-large);
+}
+
+.project-category,
+.summary-label,
+.card-category {
+    margin: 0;
+    color: var(--text-tertiary);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.featured-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.45rem 0.75rem;
+    border-radius: 999px;
+    background: var(--secondary-color-light);
+    border: 1px solid rgba(201, 107, 44, 0.18);
+    color: var(--secondary-color);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.project-title {
+    margin: 0.85rem 0 1rem;
+    font-size: clamp(2.4rem, 5vw, 4.3rem);
+    line-height: 0.94;
+    letter-spacing: -0.06em;
+    max-width: 11ch;
+}
+
+.project-description {
+    margin: 0;
+    font-size: 1.08rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    white-space: pre-line;
+}
+
+.project-summary {
+    display: grid;
+    gap: 0.85rem;
+    align-content: start;
+}
+
+.summary-card {
+    padding: 1rem;
+    border-radius: 1.2rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-color);
+}
+
+.summary-value {
+    margin: 0.35rem 0 0;
+    font-size: 1.2rem;
+    line-height: 1.4;
+}
+
+.project-actions,
+.tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+}
+
+.action-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.15rem;
+    padding: 0.8rem 1.1rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    transition: transform 0.25s ease;
+}
+
+.action-link:hover {
+    transform: translateY(-2px);
+}
+
+.section-title {
+    margin: 0 0 1rem;
+    font-size: 1.65rem;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+}
+
+.tech-item {
+    padding: 0.8rem 1rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text-secondary);
+}
+
+.highlights-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.highlights-list li {
+    flex: 1 1 16rem;
+    padding: 1rem 1.1rem;
+    background: var(--bg-secondary);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: 0.9rem;
+}
+
+.project-card {
+    display: grid;
+    gap: 0.8rem;
+    padding: 1.2rem;
+    border-radius: var(--radius-large);
+}
+
+.card-title {
+    margin: 0;
+    font-size: 1.3rem;
+    line-height: 1.05;
+}
+
+.card-description {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.card-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.card-link:hover {
+    color: var(--primary-color);
+}
+
+.not-found {
+    text-align: left;
+}
+
+.not-found .container {
+    padding: 1.5rem;
+    border-radius: var(--radius-large);
+}
+
+.not-found h1,
+.not-found p {
+    margin: 0 0 1rem;
+}
+
+.not-found p {
+    color: var(--text-secondary);
+}
+
+@media (max-width: 960px) {
+    .project-hero {
+        grid-template-columns: 1fr;
+    }
+}

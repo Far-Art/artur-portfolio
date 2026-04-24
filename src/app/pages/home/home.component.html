@@ -1,0 +1,215 @@
+<div class="home">
+    <section class="brand-stage" aria-label="Brand intro">
+        <div
+            class="brand-overlay"
+            aria-hidden="true"
+            [style.transform]="brandMotion().transform"
+            [style.opacity]="brandMotion().opacity"
+        >
+            <img
+                ngSrc="artur_farmanov_logo_plain.svg"
+                width="420"
+                height="420"
+                priority
+                alt=""
+                class="brand-overlay-logo"
+            />
+
+            <div class="brand-overlay-copy">
+                <p class="brand-overlay-kicker">Software Developer</p>
+                <h1 class="brand-overlay-title">Artur Farmanov</h1>
+                <p class="brand-overlay-subtitle">
+                    Immersive interfaces, product-focused frontend systems, and clean Angular delivery.
+                </p>
+            </div>
+        </div>
+
+        <div class="brand-scroll-cue">
+            <span class="eyebrow">Scroll to enter the portfolio</span>
+        </div>
+    </section>
+
+    <section class="hero">
+        <div class="hero-copy">
+            <span class="eyebrow">Angular portfolio engineered for impact</span>
+            <h2 class="hero-title">
+                Building immersive web products that look sharp, scale cleanly, and convert attention into
+                trust.
+            </h2>
+            <p class="hero-description">
+                I design and ship frontends for teams that want more than a landing page. The work is
+                product-minded, accessible, and performance-conscious from the first concept to the final
+                release.
+            </p>
+
+            <div class="hero-actions">
+                <a routerLink="/projects" class="hero-action hero-action-primary">Explore projects</a>
+                <a routerLink="/contact" class="hero-action hero-action-secondary">Start a project</a>
+            </div>
+
+            <ul class="pill-list hero-signals" role="list">
+                @for (signal of heroSignals; track signal) {
+                    <li class="pill">{{ signal }}</li>
+                }
+            </ul>
+        </div>
+
+        <aside class="hero-panel surface-panel" aria-label="Developer snapshot">
+            <div class="panel-header">
+                <p class="panel-label">Developer snapshot</p>
+                <span class="status-chip">Open to freelance and product work</span>
+            </div>
+
+            <div class="signal-grid">
+                @for (metric of heroMetrics; track metric.label) {
+                    <section class="signal-card">
+                        <p class="signal-value">{{ metric.value }}</p>
+                        <h3 class="signal-label">{{ metric.label }}</h3>
+                        <p class="signal-detail">{{ metric.detail }}</p>
+                    </section>
+                }
+            </div>
+
+            <div class="focus-card">
+                <p class="focus-label">Current focus</p>
+                <p class="focus-copy">
+                    Angular interfaces, design systems, and portfolio experiences that feel premium on first
+                    contact and hold up under real product constraints.
+                </p>
+            </div>
+        </aside>
+    </section>
+
+    <section class="capabilities">
+        <div class="section-heading">
+            <span class="eyebrow">What clients notice</span>
+            <h2>The portfolio behaves like a product, not a brochure.</h2>
+            <p>
+                The visual language is immersive, but the real differentiator is clarity: outcomes,
+                architecture, and trust signals are always visible.
+            </p>
+        </div>
+
+        <div class="capability-grid">
+            @for (card of capabilityCards; track card.title) {
+                <article class="capability-card surface-panel">
+                    <p class="capability-tag">{{ card.tag }}</p>
+                    <h3>{{ card.title }}</h3>
+                    <p>{{ card.description }}</p>
+                </article>
+            }
+        </div>
+    </section>
+
+    <section class="featured-projects">
+        <div class="section-heading">
+            <span class="eyebrow">Selected work</span>
+            <h2>Case studies framed around impact, not screenshots.</h2>
+            <p>
+                Each project card is written like a client-facing pitch: what it is, why it matters, and
+                which technologies shaped the result.
+            </p>
+        </div>
+
+        <div class="project-grid">
+            @for (project of caseStudies(); track project.id) {
+                <article class="project-card surface-panel">
+                    <div class="project-card-header">
+                        <p class="project-category">{{ project.categoryLabel }}</p>
+                        @if (project.featured) {
+                            <span class="project-badge">Featured</span>
+                        }
+                    </div>
+
+                    <h3 class="project-title">{{ project.title }}</h3>
+                    <p class="project-description">{{ project.shortDescription }}</p>
+
+                    <div class="project-visual" aria-hidden="true">
+                        <span class="project-visual-label">Impact layer</span>
+                        <strong>{{ project.heroHighlight }}</strong>
+                        <span>{{ project.timeline }}</span>
+                    </div>
+
+                    <ul class="project-highlights" role="list">
+                        @for (highlight of project.highlights; track highlight) {
+                            <li>{{ highlight }}</li>
+                        }
+                    </ul>
+
+                    <ul class="pill-list" role="list">
+                        @for (tech of project.technologies; track tech) {
+                            <li class="pill">{{ tech }}</li>
+                        }
+                    </ul>
+
+                    <div class="project-actions">
+                        <a [routerLink]="['/projects', project.id]" class="project-link">Read case study</a>
+                        @if (project.liveUrl) {
+                            <a [href]="project.liveUrl" target="_blank" rel="noopener" class="project-link">
+                                Live preview
+                            </a>
+                        }
+                    </div>
+                </article>
+            } @empty {
+                <article class="project-card surface-panel">
+                    <h3 class="project-title">Featured work goes here</h3>
+                    <p class="project-description">
+                        Add real project data in the portfolio dataset and the case study layout is ready to
+                        showcase it.
+                    </p>
+                </article>
+            }
+        </div>
+    </section>
+
+    <section class="operating-system">
+        <div class="section-heading">
+            <span class="eyebrow">How the work is shaped</span>
+            <h2>An immersive layout still needs engineering discipline under it.</h2>
+            <p>
+                Visual atmosphere matters, but the strongest portfolios also explain judgment:
+                accessibility, performance, hierarchy, and product thinking.
+            </p>
+        </div>
+
+        <div class="operating-grid">
+            <div class="principles surface-panel">
+                <h3>Design principles</h3>
+                @for (principle of principles; track principle.title) {
+                    <article class="principle-item">
+                        <h4>{{ principle.title }}</h4>
+                        <p>{{ principle.description }}</p>
+                    </article>
+                }
+            </div>
+
+            <div class="process surface-panel">
+                <h3>Delivery process</h3>
+                @for (step of process; track step.label) {
+                    <article class="process-item">
+                        <p class="process-label">{{ step.label }}</p>
+                        <h4>{{ step.title }}</h4>
+                        <p>{{ step.description }}</p>
+                    </article>
+                }
+            </div>
+        </div>
+    </section>
+
+    <section class="cta surface-panel">
+        <div class="cta-copy">
+            <span class="eyebrow">Need a portfolio or product frontend like this?</span>
+            <h2>Let's build something that feels premium before a visitor reads a single line.</h2>
+            <p>
+                This direction combines a warm editorial palette, dashboard-like structure, and layered
+                motion so the site feels immersive without becoming noisy.
+            </p>
+        </div>
+
+        <div class="cta-actions">
+            <a routerLink="/contact" class="hero-action hero-action-primary">Book a conversation</a>
+            <a routerLink="/experience" class="hero-action hero-action-secondary">View experience</a>
+        </div>
+    </section>
+</div>

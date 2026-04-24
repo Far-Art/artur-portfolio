@@ -1,0 +1,77 @@
+<div class="about">
+    <div class="container">
+        <section class="intro">
+            <h1 class="page-title">About Me</h1>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <p class="lead">
+                        I'm a passionate software engineer with {{ yearsOfExperience }}+ years of experience
+                        building modern web applications.
+                    </p>
+                    <p>
+                        I specialize in front-end development with Angular and TypeScript, creating scalable,
+                        maintainable, and user-friendly applications. My focus is on writing clean code,
+                        following best practices, and delivering exceptional user experiences.
+                    </p>
+                    <p>
+                        When I'm not coding, you can find me contributing to open-source projects, writing
+                        technical articles, or exploring new technologies. I'm always eager to learn and grow
+                        as a developer.
+                    </p>
+                    <div class="intro-actions">
+                        <a routerLink="/contact" class="btn btn-primary">Get In Touch</a>
+                        <a href="/assets/resume.pdf" download class="btn btn-secondary">Download Resume</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills">
+            <h2 class="section-title">Skills & Technologies</h2>
+            @for (category of categories; track category.key) {
+                <div class="skill-category">
+                    <h3 class="category-title">{{ category.label }}</h3>
+                    <div class="skills-grid">
+                        @for (skill of getSkillsByCategory(category.key); track skill.name) {
+                            <div class="skill-item" [class]="'level-' + skill.level">
+                                <span class="skill-name">{{ skill.name }}</span>
+                                @if (skill.level) {
+                                    <span class="skill-level">{{ skill.level }}</span>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </section>
+
+        <section class="education">
+            <h2 class="section-title">Education & Certifications</h2>
+            <div class="timeline">
+                @for (item of education; track item.title) {
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">{{ item.title }}</h3>
+                            <p class="timeline-institution">{{ item.institution }}</p>
+                            <p class="timeline-date">{{ item.date }}</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+
+        <section class="interests">
+            <h2 class="section-title">Beyond Code</h2>
+            <div class="interests-grid">
+                @for (interest of interests; track interest.title) {
+                    <div class="interest-card">
+                        <div class="interest-icon">{{ interest.icon }}</div>
+                        <h3 class="interest-title">{{ interest.title }}</h3>
+                        <p class="interest-description">{{ interest.description }}</p>
+                    </div>
+                }
+            </div>
+        </section>
+    </div>
+</div>

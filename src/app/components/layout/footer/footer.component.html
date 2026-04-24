@@ -1,0 +1,34 @@
+<footer class="footer">
+    <div class="footer-container surface-panel">
+        <div class="footer-heading">
+            <p class="footer-kicker">Ready for the next build?</p>
+            <h2>Design-forward engineering with product discipline.</h2>
+            <p class="footer-description">
+                Available for portfolio sites, product frontends, and Angular interfaces that need to feel
+                polished from the first scroll.
+            </p>
+        </div>
+
+        <div class="footer-content">
+            <div class="social-links" role="list">
+                @for (link of socialLinks; track link.platform) {
+                    <a
+                        [href]="link.url"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        [attr.aria-label]="link.platform"
+                        class="social-link"
+                    >
+                        <span class="social-label">{{ link.platform }}</span>
+                        <span class="social-arrow">/</span>
+                    </a>
+                }
+            </div>
+
+            <div class="footer-meta">
+                <p class="copyright">Copyright {{ currentYear }} Artur. Built for modern web clients.</p>
+                <p class="built-with">Angular {{ angularVersion }} - TypeScript - Accessible UI</p>
+            </div>
+        </div>
+    </div>
+</footer>

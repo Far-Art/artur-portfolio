@@ -1,0 +1,79 @@
+<div class="projects">
+    <div class="container">
+        <span class="eyebrow">Selected builds</span>
+        <h1 class="page-title">Projects framed as product stories.</h1>
+        <p class="page-description">
+            A strong portfolio does more than list technologies. It explains the type of product, the
+            outcome it aimed for, and the engineering choices behind it.
+        </p>
+
+        <div class="filters">
+            <button
+                class="filter-btn"
+                type="button"
+                [class.active]="currentCategory() === 'all'"
+                (click)="setCategory('all')"
+            >
+                All Projects
+            </button>
+            @for (category of categories; track category.key) {
+                <button
+                    class="filter-btn"
+                    type="button"
+                    [class.active]="currentCategory() === category.key"
+                    (click)="setCategory(category.key)"
+                >
+                    {{ category.label }}
+                </button>
+            }
+        </div>
+
+        <div class="projects-grid">
+            @for (project of filteredProjects(); track project.id) {
+                <article class="project-card surface-panel">
+                    <div class="project-header">
+                        <p class="project-category">{{ getCategoryLabel(project.category) }}</p>
+                        @if (project.featured) {
+                            <div class="featured-badge">Featured</div>
+                        }
+                    </div>
+
+                    <h2 class="project-title">{{ project.title }}</h2>
+                    <p class="project-description">{{ project.shortDescription }}</p>
+
+                    <div class="project-visual" aria-hidden="true">
+                        <span>Build signal</span>
+                        <strong>{{ project.highlights[0] }}</strong>
+                        <span>{{ project.technologies.length }} technologies in stack</span>
+                    </div>
+
+                    <div class="project-tech">
+                        @for (tech of project.technologies; track tech) {
+                            <span class="tech-badge">{{ tech }}</span>
+                        }
+                    </div>
+
+                    <div class="project-footer">
+                        <a [routerLink]="['/projects', project.id]" class="project-link">Read case study</a>
+                        <div class="project-links">
+                            @if (project.githubUrl) {
+                                <a [href]="project.githubUrl" target="_blank" rel="noopener" class="project-link">
+                                    GitHub
+                                </a>
+                            }
+                            @if (project.liveUrl) {
+                                <a [href]="project.liveUrl" target="_blank" rel="noopener" class="project-link">
+                                    Live demo
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </article>
+            } @empty {
+                <div class="empty-state surface-panel">
+                    <p>No projects found in this category.</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>

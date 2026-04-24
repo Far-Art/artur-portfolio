@@ -1,0 +1,463 @@
+.home {
+    display: grid;
+    gap: 2rem;
+    padding-top: 1.5rem;
+}
+
+.brand-stage {
+    position: relative;
+    min-height: 155vh;
+}
+
+.brand-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 900;
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: min(78vw, 52rem);
+    max-width: calc(100vw - 2rem);
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+.brand-overlay-logo {
+    width: clamp(7rem, 18vw, 14rem);
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 24px 60px rgba(23, 22, 29, 0.16));
+    flex-shrink: 0;
+}
+
+.brand-overlay-copy {
+    min-width: 0;
+}
+
+.brand-overlay-kicker {
+    margin: 0 0 0.65rem;
+    color: var(--secondary-color);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.84rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.brand-overlay-title {
+    margin: 0;
+    font-size: clamp(2.4rem, 6vw, 5.8rem);
+    line-height: 0.9;
+    letter-spacing: -0.07em;
+}
+
+.brand-overlay-subtitle {
+    margin: 0.8rem 0 0;
+    max-width: 26rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.brand-scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: 10rem;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(20rem, 0.9fr);
+    gap: 1.5rem;
+    align-items: stretch;
+    padding: 1rem 0;
+}
+
+.hero-title {
+    margin: 1.2rem 0 1rem;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: -0.07em;
+    max-width: 12ch;
+}
+
+.hero-description {
+    max-width: 40rem;
+    margin: 0 0 2rem;
+    font-size: 1.14rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.hero-actions {
+    display: flex;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.hero-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.35rem;
+    padding: 0.85rem 1.35rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.hero-action:hover {
+    transform: translateY(-2px);
+}
+
+.hero-action-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    box-shadow: var(--shadow-soft);
+}
+
+.hero-action-secondary {
+    border: 1px solid var(--border-strong);
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+}
+
+.hero-signals {
+    max-width: 42rem;
+}
+
+.hero-panel {
+    display: grid;
+    gap: 1rem;
+    padding: 1.4rem;
+    border-radius: var(--radius-large);
+    align-content: start;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-panel::before {
+    content: '';
+    position: absolute;
+    inset: auto -10% -30% auto;
+    width: 14rem;
+    height: 14rem;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(201, 107, 44, 0.18), transparent 70%);
+    pointer-events: none;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.panel-label,
+.status-chip,
+.capability-tag,
+.project-category,
+.process-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.panel-label,
+.process-label {
+    color: var(--text-tertiary);
+    margin: 0;
+}
+
+.status-chip,
+.project-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.45rem 0.75rem;
+    border-radius: 999px;
+    background: var(--secondary-color-light);
+    color: var(--secondary-color);
+    border: 1px solid rgba(201, 107, 44, 0.18);
+}
+
+.signal-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+.signal-card,
+.focus-card,
+.capability-card,
+.project-card,
+.principles,
+.process,
+.cta {
+    border-radius: var(--radius-large);
+}
+
+.signal-card {
+    padding: 1rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-color);
+}
+
+.signal-value {
+    margin: 0 0 0.45rem;
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+}
+
+.signal-label {
+    margin: 0 0 0.35rem;
+    font-size: 1rem;
+}
+
+.signal-detail,
+.focus-copy,
+.capability-card p,
+.project-description,
+.principle-item p,
+.process-item p,
+.cta-copy p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.focus-card {
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--border-color);
+    background: linear-gradient(180deg, var(--bg-elevated), rgba(255, 255, 255, 0.16));
+}
+
+.focus-label {
+    margin: 0 0 0.4rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.capabilities,
+.featured-projects,
+.operating-system {
+    display: grid;
+    gap: 1.25rem;
+    padding: 1rem 0;
+}
+
+.capability-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.capability-card {
+    padding: 1.4rem;
+}
+
+.capability-card h3,
+.principles h3,
+.process h3,
+.cta h2 {
+    margin: 0 0 0.8rem;
+    font-size: 1.45rem;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+}
+
+.capability-tag {
+    margin: 0 0 0.8rem;
+    color: var(--primary-color);
+}
+
+.project-grid,
+.operating-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.project-card {
+    display: grid;
+    gap: 1rem;
+    padding: 1.4rem;
+}
+
+.project-card-header,
+.project-actions,
+.cta {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.project-category {
+    margin: 0;
+    color: var(--text-tertiary);
+}
+
+.project-title {
+    margin: 0;
+    font-size: 1.75rem;
+    line-height: 1;
+    letter-spacing: -0.05em;
+}
+
+.project-visual {
+    display: grid;
+    gap: 0.35rem;
+    padding: 1.2rem;
+    border-radius: 1.4rem;
+    background: linear-gradient(135deg, var(--primary-color-light), transparent),
+    linear-gradient(135deg, rgba(22, 78, 99, 0.14), rgba(201, 107, 44, 0.1));
+    border: 1px solid var(--border-color);
+}
+
+.project-visual-label {
+    color: var(--text-tertiary);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.project-visual strong {
+    font-size: 1.4rem;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+}
+
+.project-visual span:last-child {
+    color: var(--text-secondary);
+}
+
+.project-highlights {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.project-highlights li {
+    padding-left: 1rem;
+    position: relative;
+    color: var(--text-secondary);
+}
+
+.project-highlights li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.72rem;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+
+.project-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.project-link:hover {
+    color: var(--primary-color);
+}
+
+.principles,
+.process {
+    display: grid;
+    gap: 1rem;
+    padding: 1.4rem;
+}
+
+.principle-item,
+.process-item {
+    padding: 1rem 0 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.principle-item:first-of-type,
+.process-item:first-of-type {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.principle-item h4,
+.process-item h4 {
+    margin: 0 0 0.45rem;
+    font-size: 1.05rem;
+}
+
+.cta {
+    padding: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.cta-copy {
+    max-width: 40rem;
+}
+
+@media (max-width: 1080px) {
+    .hero,
+    .capability-grid,
+    .project-grid,
+    .operating-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .home {
+        gap: 1.5rem;
+    }
+
+    .brand-stage {
+        min-height: 140vh;
+    }
+
+    .brand-overlay {
+        flex-direction: column;
+        text-align: center;
+        max-width: calc(100vw - 2rem);
+    }
+
+    .brand-overlay-subtitle {
+        margin-inline: auto;
+    }
+
+    .hero {
+        padding-top: 0;
+    }
+
+    .hero-title {
+        font-size: clamp(2.6rem, 14vw, 4.2rem);
+    }
+
+    .signal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-title {
+        font-size: 1.45rem;
+    }
+
+    .cta {
+        align-items: flex-start;
+    }
+}
