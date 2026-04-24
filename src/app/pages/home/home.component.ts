@@ -13,6 +13,7 @@ import {RouterLink} from '@angular/router';
 import {PROJECT_CATEGORIES} from '../../models/project.model';
 import {BrandTransitionService} from '../../services/brand-transition.service';
 import {ProjectsService} from '../../services/projects.service';
+import {Logo} from '../../logo/logo';
 
 
 interface HeroMetric {
@@ -40,7 +41,7 @@ interface ProcessStep {
 
 @Component({
     selector: 'fa-home',
-    imports: [RouterLink, NgOptimizedImage],
+    imports: [RouterLink, NgOptimizedImage, Logo],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
