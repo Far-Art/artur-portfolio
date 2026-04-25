@@ -4,22 +4,17 @@ import {SocialLink} from '../models/contact.model';
 export const SOCIAL_LINKS: SocialLink[] = [
     {
         platform: 'GitHub',
-        url: 'https://github.com/yourusername',
+        url: 'https://github.com/Far-Art',
         icon: 'github'
     },
     {
         platform: 'LinkedIn',
-        url: 'https://linkedin.com/in/yourprofile',
+        url: 'https://www.linkedin.com/in/artur-farmanov/',
         icon: 'linkedin'
     },
     {
-        platform: 'Twitter',
-        url: 'https://twitter.com/yourhandle',
-        icon: 'twitter'
-    },
-    {
         platform: 'Email',
-        url: 'mailto:your.email@example.com',
+        url: 'mailto:arturfarmanov91@gmail.com',
         icon: 'email'
     }
 ];
