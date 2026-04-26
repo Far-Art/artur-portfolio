@@ -85,59 +85,6 @@
                     </button>
                 </form>
             </div>
-
-            <div class="info-section">
-                <div class="info-card">
-                    <h2 class="info-title">Let's Connect</h2>
-                    <p class="info-description">
-                        I'm always open to discussing new projects, creative ideas, or opportunities to be part
-                        of your visions.
-                    </p>
-
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <div class="method-icon">@</div>
-                            <div class="method-content">
-                                <h3 class="method-title">Email</h3>
-                                <a href="mailto:your.email@example.com" class="method-link">your.email@example.com</a>
-                            </div>
-                        </div>
-
-                        <div class="contact-method">
-                            <div class="method-icon">Loc</div>
-                            <div class="method-content">
-                                <h3 class="method-title">Location</h3>
-                                <p class="method-text">Your City, Country</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-method">
-                            <div class="method-icon">Open</div>
-                            <div class="method-content">
-                                <h3 class="method-title">Availability</h3>
-                                <p class="method-text">Open for opportunities</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="social-section">
-                        <h3 class="social-title">Find me on</h3>
-                        <div class="social-links">
-                            @for (link of socialLinks; track link.platform) {
-                                <a
-                                    [href]="link.url"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="social-link"
-                                    [attr.aria-label]="link.platform"
-                                >
-                                    {{ link.platform }}
-                                </a>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

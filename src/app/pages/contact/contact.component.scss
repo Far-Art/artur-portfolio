@@ -1,5 +1,5 @@
 .contact {
-    min-height: 100vh;
+    min-height: 100svh;
     padding: 4rem 0;
 }
 
@@ -28,10 +28,9 @@
 }
 
 .contact-content {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 3rem;
-    align-items: start;
+    width: 100%;
+    place-self: center;
+    max-width: 65ch;
 }
 
 .contact-form {
@@ -132,118 +131,9 @@ textarea {
     cursor: not-allowed;
 }
 
-.info-section {
-    position: sticky;
-    top: 100px;
-}
-
-.info-card {
-    background: var(--bg-secondary);
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-}
-
-.info-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-}
-
-.info-description {
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 2rem;
-}
-
-.contact-methods {
-    margin-bottom: 2rem;
-}
-
-.contact-method {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    background: var(--bg-primary);
-    border-radius: 8px;
-}
-
-.method-icon {
-    font-size: 0.9rem;
-    flex-shrink: 0;
-    min-width: 3rem;
-
-    text-transform: uppercase;
-    color: var(--primary-color);
-}
-
-.method-content {
-    flex: 1;
-}
-
-.method-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.25rem;
-}
-
-.method-link {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.method-link:hover {
-    text-decoration: underline;
-}
-
-.method-text {
-    color: var(--text-secondary);
-    margin: 0;
-}
-
-.social-section {
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
-}
-
-.social-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-}
-
-.social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.social-link {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    padding: 0.5rem;
-    border-radius: 6px;
-}
-
-.social-link:hover {
-    background: var(--primary-color-light);
-    padding-left: 1rem;
-}
-
 @media (max-width: 968px) {
     .contact-content {
         grid-template-columns: 1fr;
-    }
-
-    .info-section {
-        position: static;
     }
 }
 
