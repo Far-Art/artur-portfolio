@@ -2,29 +2,9 @@
     class="header"
     [style.opacity]="headerOpacity()"
     [style.transform]="headerTransform()"
-    [style.pointer-events]="headerPointerEvents()"
->
+    [style.pointer-events]="headerPointerEvents()">
+
     <nav class="nav-container surface-panel" aria-label="Primary">
-        <a
-            routerLink="/"
-            class="logo"
-            aria-label="Artur portfolio home"
-            [style.opacity]="headerBrandOpacity()"
-        >
-            <img
-                ngSrc="artur_farmanov_logo_plain.svg"
-                width="64"
-                height="64"
-                priority
-                alt=""
-                aria-hidden="true"
-                class="logo-image"
-            />
-            <span class="logo-copy">
-        <span class="logo-title">Artur Farmanov</span>
-        <span class="logo-subtitle">Software Developer</span>
-      </span>
-        </a>
 
         <ul class="nav-links" role="list">
             <li>

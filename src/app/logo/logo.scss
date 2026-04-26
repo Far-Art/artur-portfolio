@@ -3,13 +3,9 @@
     --logo-fill-secondary: #566176;
 
     display: block;
-    position: fixed;
-    width: 100px;
-    translate: -50% -50%;
-    left: 50%;
-    top: 50%;
 
     svg {
+        display: block;
         pointer-events: none;
 
         .shape {

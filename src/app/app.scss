@@ -1,94 +1,135 @@
+.no-click {
+    pointer-events: none;
+}
+
+.drop-shadow {
+    filter: drop-shadow(3px 4px 3px rgba(23, 22, 29, 0.2));
+}
+
 .fa-shell {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  isolation: isolate;
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    isolation: isolate;
 }
 
 .fa-backdrop {
-  position: fixed;
-  inset: 0;
-  overflow: clip;
-  pointer-events: none;
-  z-index: -1;
+    position: fixed;
+    inset: 0;
+    overflow: clip;
+    pointer-events: none;
+    z-index: -1;
 }
 
 .fa-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(to right, rgba(24, 22, 29, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(24, 22, 29, 0.05) 1px, transparent 1px);
-  background-size: 5rem 5rem;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.24), transparent 72%);
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(to right, rgba(24, 22, 29, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(24, 22, 29, 0.1) 1px, transparent 1px);
+    background-size: 5rem 5rem;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.24), transparent 72%);
 }
 
 .fa-orb {
-  position: absolute;
-  border-radius: 999px;
-  filter: blur(90px);
-  opacity: 0.8;
-  animation: float-orb 14s ease-in-out infinite;
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(90px);
+    opacity: 0.8;
+    animation: float-orb 14s ease-in-out infinite;
 }
 
 .fa-orb-one {
-  width: 28rem;
-  height: 28rem;
-  top: -6rem;
-  left: -8rem;
-  background: rgba(15, 118, 110, 0.22);
+    width: 28rem;
+    height: 28rem;
+    top: -6rem;
+    left: -8rem;
+    background: rgba(15, 118, 110, 0.22);
 }
 
 .fa-orb-two {
-  width: 24rem;
-  height: 24rem;
-  top: 14rem;
-  right: -4rem;
-  background: rgba(201, 107, 44, 0.2);
-  animation-delay: -5s;
+    width: 24rem;
+    height: 24rem;
+    top: 14rem;
+    right: -4rem;
+    background: rgba(201, 107, 44, 0.2);
+    animation-delay: -5s;
 }
 
 .fa-orb-three {
-  width: 18rem;
-  height: 18rem;
-  bottom: 6rem;
-  left: 45%;
-  background: rgba(22, 78, 99, 0.16);
-  animation-delay: -9s;
+    width: 18rem;
+    height: 18rem;
+    bottom: 6rem;
+    left: 45%;
+    background: rgba(22, 78, 99, 0.16);
+    animation-delay: -9s;
 }
 
 .fa-main {
-  flex: 1;
-  width: min(100%, 88rem);
-  margin: 0 auto;
-  padding: 0 1.25rem 4rem;
+    flex: 1;
+    width: min(100%, 88rem);
+    margin: 0 auto;
+    padding: 6.5rem 1.25rem 4rem;
+}
+
+.brand-logo-link {
+    --brand-progress: 1;
+    --logo-start-left: calc(52% + 1em);
+    --logo-start-top: calc(50svh - 10rem);
+    --logo-start-width: clamp(10rem, 28vw, 24rem);
+    --logo-end-width: 3.5rem;
+    --logo-end-left: calc(max((100vw - 88rem) / 2 + 1.1rem, 1.1rem) + var(--logo-end-width) / 2);
+    --logo-end-top: 3.5rem;
+
+    display: block;
+    position: fixed;
+    width: calc(var(--logo-start-width) + (var(--logo-end-width) - var(--logo-start-width)) * var(--brand-progress));
+    left: calc(var(--logo-start-left) + (var(--logo-end-left) - var(--logo-start-left)) * var(--brand-progress));
+    top: calc(var(--logo-start-top) + (var(--logo-end-top) - var(--logo-start-top)) * var(--brand-progress));
+    translate: -50% -50%;
+    z-index: 1200;
+    text-decoration: none;
+    transition: width 0.12s linear,
+    left 0.12s linear,
+    top 0.12s linear;
+
+    fa-logo {
+        display: block;
+    }
 }
 
 @keyframes float-orb {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
 
-  50% {
-    transform: translate3d(0, -1.5rem, 0) scale(1.03);
-  }
+    50% {
+        transform: translate3d(0, -1.5rem, 0) scale(1.03);
+    }
 }
 
 @media (max-width: 768px) {
-  .fa-main {
-    padding-inline: 1rem;
-    padding-bottom: 3rem;
-  }
+    .fa-main {
+        padding-inline: 1rem;
+        padding-bottom: 3rem;
+    }
 
-  .fa-grid {
-    background-size: 3.5rem 3.5rem;
-  }
+    .brand-logo-link {
+        --logo-start-top: calc(50svh - 5.5rem);
+        --logo-end-top: 2.9rem;
+        --logo-start-width: clamp(10rem, 42vw, 18rem);
+        --logo-end-width: 2.7rem;
+        --logo-end-left: calc(0.9rem + var(--logo-end-width) / 2);
+    }
+
+    .fa-grid {
+        background-size: 3.5rem 3.5rem;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fa-orb {
-    animation: none;
-  }
+    .fa-orb {
+        animation: none;
+    }
 }

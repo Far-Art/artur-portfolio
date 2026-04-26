@@ -1,7 +1,6 @@
 .home {
     display: grid;
     gap: 2rem;
-    padding-top: 1.5rem;
 }
 
 .brand-stage {
@@ -10,23 +9,38 @@
 }
 
 .brand-overlay {
+    --brand-progress: 0;
     position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 900;
+    left: 50%;
+    top: 50%;
+    translate: -50% calc(-50% + 6.75rem + 2.5rem * var(--brand-progress));
+    z-index: 1090;
     display: grid;
     justify-items: center;
     text-align: center;
     width: min(80vw, 14ch * 10);
     max-width: calc(100vw - 2rem);
-    will-change: transform, opacity;
+    opacity: calc(1 - min(1, var(--brand-progress) * 1.5));
+    //pointer-events: none;
+    will-change: translate, opacity;
+}
+
+.brand-overlay-container {
+    min-height: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transition: opacity 0.18s linear;
 }
 
 .brand-overlay-separator {
     position: relative;
     width: 100%;
 
-    &:before, &:after {
+    &:before,
+    &:after {
         content: '';
         position: absolute;
         top: 50%;
@@ -46,33 +60,22 @@
     }
 }
 
-.brand-overlay-logo {
-    min-height: 0;
-    aspect-ratio: 4.3 / 3;
-    width: clamp(6rem, 40vw, 25rem);
-}
-
-.brand-overlay-copy {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
 .brand-overlay-kicker {
     margin: 0;
     color: var(--secondary-color);
     letter-spacing: 1.2em;
+    font-size: clamp(0.5rem, 0.5vw + 0.5rem, 3rem);
     text-transform: uppercase;
 }
 
 .brand-overlay-title {
+    display: flex;
+    gap: clamp(1rem, 3.5vw, 4rem);
     margin: 0;
-    font-size: clamp(2rem, 4vw, 5rem);
+    font-size: clamp(1rem, 3.7vw, 5rem);
     line-height: 0.9;
     letter-spacing: 0.65ch;
-    font-weight: 400;
+    font-weight: 300;
     text-transform: uppercase;
     white-space: nowrap;
 }
@@ -86,12 +89,21 @@
 }
 
 .brand-scroll-cue {
+    --brand-progress: 0;
     position: absolute;
     left: 50%;
     bottom: 10rem;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
+    opacity: calc(1 - min(1, var(--brand-progress) * 8));
+    transition: opacity 0.18s linear;
+    text-decoration: none;
+
+    .eyebrow {
+        animation: brand-scroll-cue-bounce 1.8s ease-in-out infinite;
+        will-change: transform;
+    }
 }
 
 .hero {
@@ -100,6 +112,7 @@
     gap: 1.5rem;
     align-items: stretch;
     padding: 1rem 0;
+    scroll-margin-top: 8.5rem;
 }
 
 .hero-title {
@@ -454,9 +467,8 @@
     }
 
     .brand-overlay {
-        flex-direction: column;
-        text-align: center;
         max-width: calc(100vw - 2rem);
+        translate: -50% calc(-50% + 5.5rem + 2rem * var(--brand-progress));
     }
 
     .brand-overlay-subtitle {
@@ -481,5 +493,24 @@
 
     .cta {
         align-items: flex-start;
+    }
+}
+
+@keyframes brand-scroll-cue-bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(0.7rem);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .brand-scroll-cue {
+        .eyebrow {
+            animation: none;
+        }
     }
 }

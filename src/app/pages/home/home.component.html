@@ -3,22 +3,13 @@
         <div
             class="brand-overlay"
             aria-hidden="true"
-            [style.transform]="brandMotion().transform"
-            [style.opacity]="brandMotion().opacity"
+            [style.--brand-progress]="brandProgress()"
         >
-<!--            <img-->
-<!--                ngSrc="artur_farmanov_logo_plain.svg"-->
-<!--                width="420"-->
-<!--                height="420"-->
-<!--                priority-->
-<!--                alt=""-->
-<!--                class="brand-overlay-logo"-->
-<!--            />-->
-
-            <fa-logo class="brand-overlay-logo"/>
-
-            <div class="brand-overlay-copy">
-                <h1 class="brand-overlay-title">Artur Farmanov</h1>
+            <div class="brand-overlay-container">
+                <h1 class="brand-overlay-title">
+                    <span>Artur</span>
+                    <span>Farmanov</span>
+                </h1>
                 <div class="brand-overlay-separator">&#123; &#125;</div>
                 <p class="brand-overlay-kicker">Software Developer</p>
                 <p class="brand-overlay-subtitle">
@@ -27,12 +18,17 @@
             </div>
         </div>
 
-        <div class="brand-scroll-cue">
+        <a
+            class="brand-scroll-cue"
+            href="#home-hero"
+            aria-label="Scroll to portfolio content"
+            [style.--brand-progress]="brandProgress()"
+        >
             <span class="eyebrow">Scroll to enter the portfolio</span>
-        </div>
+        </a>
     </section>
 
-    <section class="hero">
+    <section id="home-hero" class="hero">
         <div class="hero-copy">
             <span class="eyebrow">Angular portfolio engineered for impact</span>
             <h2 class="hero-title">

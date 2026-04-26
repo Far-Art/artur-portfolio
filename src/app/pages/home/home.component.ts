@@ -1,4 +1,4 @@
-import {NgOptimizedImage, isPlatformBrowser} from '@angular/common';
+import {isPlatformBrowser} from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -6,14 +6,12 @@ import {
     PLATFORM_ID,
     afterNextRender,
     computed,
-    inject,
-    signal
+    inject
 } from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {PROJECT_CATEGORIES} from '../../models/project.model';
 import {BrandTransitionService} from '../../services/brand-transition.service';
 import {ProjectsService} from '../../services/projects.service';
-import {Logo} from '../../logo/logo';
 
 
 interface HeroMetric {
@@ -41,7 +39,7 @@ interface ProcessStep {
 
 @Component({
     selector: 'fa-home',
-    imports: [RouterLink, NgOptimizedImage, Logo],
+    imports: [RouterLink],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
@@ -53,10 +51,6 @@ export class HomeComponent {
     private readonly platformId = inject(PLATFORM_ID);
 
     private readonly featuredProjects = this.projectsService.featuredProjects;
-    private readonly viewport = signal({
-        width: 1440,
-        height: 900
-    });
 
     readonly heroSignals = [
         'Immersive layout system',
@@ -161,29 +155,7 @@ export class HomeComponent {
         }))
     );
 
-    readonly brandMotion = computed(() => {
-        const progress = this.easeInOut(this.brandTransitionService.progress());
-        const viewport = this.viewport();
-
-        const stageWidth = Math.min(viewport.width, 1408);
-        const containerLeft = (viewport.width - stageWidth) / 2;
-
-        const startX = viewport.width / 2;
-        const startY = viewport.height / 2;
-        const endX = containerLeft + 132;
-        const endY = 64;
-
-        const x = startX + (endX - startX) * progress;
-        const y = startY + (endY - startY) * progress;
-        const scale = 1.08 - progress * 0.54;
-        // const opacity = 1 - Math.max(0, (progress - 0.94) / 0.06);
-        const opacity = 1;
-
-        return {
-            transform: `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${scale})`,
-            opacity: `${opacity}`
-        };
-    });
+    readonly brandProgress = computed(() => `${this.brandTransitionService.progress()}`);
 
     constructor() {
         afterNextRender(() => {
@@ -194,11 +166,6 @@ export class HomeComponent {
             this.brandTransitionService.activate();
 
             const updateBrandState = () => {
-                this.viewport.set({
-                    width: window.innerWidth,
-                    height: window.innerHeight
-                });
-
                 this.brandTransitionService.setProgress(window.scrollY / 420);
             };
 
@@ -213,9 +180,5 @@ export class HomeComponent {
                 this.brandTransitionService.deactivate();
             });
         });
-    }
-
-    private easeInOut(value: number): number {
-        return value * value * (3 - 2 * value);
     }
 }

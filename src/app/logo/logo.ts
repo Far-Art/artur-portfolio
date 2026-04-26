@@ -7,6 +7,4 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
     styleUrl: './logo.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Logo {
-
-}
+export class Logo {}

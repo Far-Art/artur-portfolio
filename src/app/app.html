@@ -9,6 +9,15 @@
 
     <fa-header />
 
+    <a routerLink="/"
+       class="brand-logo-link"
+       aria-label="Artur portfolio home"
+       [class.no-click]="brandProgress() === '0'"
+       [class.drop-shadow]="brandProgress() === '1'"
+       [style.--brand-progress]="brandProgress()">
+        <fa-logo />
+    </a>
+
     <main id="main-content" class="fa-main" role="main">
         <router-outlet />
     </main>
