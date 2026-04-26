@@ -26,6 +26,12 @@
     --radius-large: 2rem;
     --radius-medium: 1.25rem;
     --radius-small: 0.875rem;
+    --page-transition-duration: 420ms;
+    --page-transition-easing: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@view-transition {
+    navigation: auto;
 }
 
 [data-theme='dark'] {
@@ -176,8 +182,58 @@ img {
     font-size: 1.05rem;
 }
 
+@keyframes page-enter {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 2rem, 0) scale(0.985);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+@keyframes page-exit {
+    from {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate3d(0, -1.5rem, 0) scale(0.99);
+    }
+}
+
+::view-transition-group(route-content) {
+    z-index: 1;
+    animation-duration: var(--page-transition-duration);
+    animation-timing-function: var(--page-transition-easing);
+}
+
+::view-transition-old(route-content),
+::view-transition-new(route-content) {
+    animation-duration: var(--page-transition-duration);
+    animation-timing-function: var(--page-transition-easing);
+}
+
+::view-transition-old(route-content) {
+    animation-name: page-exit;
+}
+
+::view-transition-new(route-content) {
+    animation-name: page-enter;
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
+    }
+
+    ::view-transition-group(route-content),
+    ::view-transition-old(route-content),
+    ::view-transition-new(route-content) {
+        animation-duration: 1ms;
     }
 }

@@ -1,13 +1,5 @@
-import {isPlatformBrowser} from '@angular/common';
-import {
-    ChangeDetectionStrategy,
-    Component,
-    DestroyRef,
-    PLATFORM_ID,
-    afterNextRender,
-    computed,
-    inject
-} from '@angular/core';
+import {DOCUMENT, isPlatformBrowser} from '@angular/common';
+import {afterNextRender, ChangeDetectionStrategy, Component, computed, DestroyRef, inject, PLATFORM_ID} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {PanelComponent} from '../../components/shared/panel/panel.component';
 import {PROJECT_CATEGORIES} from '../../models/project.model';
@@ -46,20 +38,12 @@ interface ProcessStep {
     styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-    private readonly projectsService = inject(ProjectsService);
-    private readonly brandTransitionService = inject(BrandTransitionService);
-    private readonly destroyRef = inject(DestroyRef);
-    private readonly platformId = inject(PLATFORM_ID);
-
-    private readonly featuredProjects = this.projectsService.featuredProjects;
-
     readonly heroSignals = [
         'Immersive layout system',
         'Accessible interaction states',
         'Case-study storytelling',
         'Performance-minded Angular'
     ];
-
     readonly heroMetrics: HeroMetric[] = [
         {
             value: '4+',
@@ -82,7 +66,6 @@ export class HomeComponent {
             detail: 'Clear messaging, clean motion, and friction-free navigation.'
         }
     ];
-
     readonly capabilityCards: CapabilityCard[] = [
         {
             tag: 'Immersion',
@@ -103,7 +86,6 @@ export class HomeComponent {
                 'Angular architecture, responsive layouts, and accessible states keep the portfolio impressive and dependable.'
         }
     ];
-
     readonly principles: Principle[] = [
         {
             title: 'Clear hierarchy',
@@ -121,7 +103,6 @@ export class HomeComponent {
                 'Depth comes from layered backgrounds, subtle drift, and restrained hover states instead of constant animation.'
         }
     ];
-
     readonly process: ProcessStep[] = [
         {
             label: '01',
@@ -142,7 +123,13 @@ export class HomeComponent {
                 'Accessibility, responsiveness, and load behavior are refined so the portfolio feels finished on every screen.'
         }
     ];
-
+    private readonly projectsService = inject(ProjectsService);
+    private readonly brandTransitionService = inject(BrandTransitionService);
+    readonly brandProgress = computed(() => `${this.brandTransitionService.progress()}`);
+    private readonly destroyRef = inject(DestroyRef);
+    private readonly document = inject(DOCUMENT);
+    private readonly platformId = inject(PLATFORM_ID);
+    private readonly featuredProjects = this.projectsService.featuredProjects;
     readonly caseStudies = computed(() =>
         this.featuredProjects().map((project) => ({
             ...project,
@@ -156,21 +143,47 @@ export class HomeComponent {
         }))
     );
 
-    readonly brandProgress = computed(() => `${this.brandTransitionService.progress()}`);
-
     constructor() {
         afterNextRender(() => {
             if (!isPlatformBrowser(this.platformId)) {
                 return;
             }
 
-            this.brandTransitionService.activate();
+            const heroSection = this.document.getElementById('home-hero');
+            let heroObserver: IntersectionObserver | null = null;
 
             const updateBrandState = () => {
+                if (this.syncIntroWithScroll(heroSection)) {
+                    heroObserver?.disconnect();
+                    return;
+                }
+
+                this.brandTransitionService.activate();
                 this.brandTransitionService.setProgress(window.scrollY / 420);
             };
 
-            updateBrandState();
+            if (heroSection) {
+                heroObserver = new IntersectionObserver(
+                    (entries) => {
+                        if (!entries.some((entry) => entry.isIntersecting)) {
+                            return;
+                        }
+
+                        heroObserver?.disconnect();
+                    },
+                    {
+                        threshold: 0.2
+                    }
+                );
+            }
+
+            this.brandTransitionService.activate();
+            this.brandTransitionService.setProgress(window.scrollY / 420);
+            heroObserver?.observe(heroSection!);
+
+            requestAnimationFrame(() => {
+                requestAnimationFrame(updateBrandState);
+            });
 
             window.addEventListener('scroll', updateBrandState, {passive: true});
             window.addEventListener('resize', updateBrandState);
@@ -178,8 +191,32 @@ export class HomeComponent {
             this.destroyRef.onDestroy(() => {
                 window.removeEventListener('scroll', updateBrandState);
                 window.removeEventListener('resize', updateBrandState);
+                heroObserver?.disconnect();
                 this.brandTransitionService.deactivate();
             });
         });
+    }
+
+    scrollToHero(event: MouseEvent): void {
+        event.preventDefault();
+
+        if (!isPlatformBrowser(this.platformId)) {
+            return;
+        }
+
+        this.document.getElementById('home-hero')?.scrollIntoView({
+            block: 'start',
+            behavior: 'smooth'
+        });
+    }
+
+    private syncIntroWithScroll(heroSection: HTMLElement | null): boolean {
+        if (!heroSection) {
+            return false;
+        }
+
+        const heroTop = heroSection.getBoundingClientRect().top + window.scrollY;
+
+        return window.scrollY >= heroTop - 1;
     }
 }
