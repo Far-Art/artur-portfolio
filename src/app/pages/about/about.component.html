@@ -13,14 +13,8 @@
                         maintainable applications. Performance and visuals are at the core of every product I
                         ship, with clean architecture and strong user experience supporting both.
                     </p>
-                    <p>
-                        When I'm not coding, you can find me contributing to open-source projects, writing
-                        technical articles, or exploring new technologies. I'm always eager to learn and grow
-                        as a developer.
-                    </p>
                     <div class="intro-actions">
                         <a routerLink="/contact" class="btn btn-primary">Get In Touch</a>
-                        <a href="/assets/resume.pdf" download class="btn btn-secondary">Download Resume</a>
                     </div>
                 </div>
             </div>
@@ -30,7 +24,7 @@
             <h2 class="section-title">Skills & Technologies</h2>
             @for (category of categories; track category.key) {
                 @let skills = getSkillsByCategory(category.key);
-                @if (skills.length === 0) {
+                @if (skills.length > 0) {
                     <div class="skill-category">
                         <h3 class="category-title">{{ category.label }}</h3>
                         <div class="skills-grid">
