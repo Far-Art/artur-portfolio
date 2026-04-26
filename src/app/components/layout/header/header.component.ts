@@ -32,7 +32,20 @@ export class HeaderComponent {
         return this.headerOpacity() < 0.05 ? 'none' : 'auto';
     });
 
-    toggleTheme(): void {
-        this.themeService.toggleTheme();
+    toggleTheme(event: MouseEvent): void {
+        const target = event.currentTarget;
+        if (!(target instanceof HTMLElement)) {
+            this.themeService.toggleTheme();
+            return;
+        }
+
+        const bounds = target.getBoundingClientRect();
+        const hasPointerPosition = Number.isFinite(event.clientX) && Number.isFinite(event.clientY) &&
+            (event.clientX !== 0 || event.clientY !== 0);
+
+        this.themeService.toggleTheme({
+            x: hasPointerPosition ? event.clientX : bounds.left + bounds.width / 2,
+            y: hasPointerPosition ? event.clientY : bounds.top + bounds.height / 2
+        });
     }
 }

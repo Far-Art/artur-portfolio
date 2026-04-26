@@ -29,7 +29,7 @@
         <button
             class="theme-toggle"
             type="button"
-            (click)="toggleTheme()"
+            (click)="toggleTheme($event)"
             [attr.aria-label]="'Switch to ' + (theme() === 'light' ? 'dark' : 'light') + ' theme'"
             [attr.aria-pressed]="theme() === 'dark'"
         >
