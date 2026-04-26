@@ -21,7 +21,7 @@
     width: min(80vw, 14ch * 10);
     max-width: calc(100vw - 2rem);
     opacity: calc(1 - min(1, var(--brand-progress) * 1.5));
-    //pointer-events: none;
+    pointer-events: none;
     will-change: translate, opacity;
 }
 

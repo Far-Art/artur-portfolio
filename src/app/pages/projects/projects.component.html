@@ -30,7 +30,7 @@
 
         <div class="projects-grid">
             @for (project of filteredProjects(); track project.id) {
-                <article class="project-card surface-panel">
+                <article class="project-card" faPanel>
                     <div class="project-header">
                         <p class="project-category">{{ getCategoryLabel(project.category) }}</p>
                         @if (project.featured) {
@@ -70,7 +70,7 @@
                     </div>
                 </article>
             } @empty {
-                <div class="empty-state surface-panel">
+                <div class="empty-state" faPanel>
                     <p>No projects found in this category.</p>
                 </div>
             }

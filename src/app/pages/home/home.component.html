@@ -53,7 +53,7 @@
             </ul>
         </div>
 
-        <aside class="hero-panel surface-panel" aria-label="Developer snapshot">
+        <aside class="hero-panel" aria-label="Developer snapshot" faPanel>
             <div class="panel-header">
                 <p class="panel-label">Developer snapshot</p>
                 <span class="status-chip">Open to freelance and product work</span>
@@ -91,7 +91,7 @@
 
         <div class="capability-grid">
             @for (card of capabilityCards; track card.title) {
-                <article class="capability-card surface-panel">
+                <article class="capability-card" faPanel>
                     <p class="capability-tag">{{ card.tag }}</p>
                     <h3>{{ card.title }}</h3>
                     <p>{{ card.description }}</p>
@@ -112,7 +112,7 @@
 
         <div class="project-grid">
             @for (project of caseStudies(); track project.id) {
-                <article class="project-card surface-panel">
+                <article class="project-card" faPanel>
                     <div class="project-card-header">
                         <p class="project-category">{{ project.categoryLabel }}</p>
                         @if (project.featured) {
@@ -151,7 +151,7 @@
                     </div>
                 </article>
             } @empty {
-                <article class="project-card surface-panel">
+                <article class="project-card" faPanel>
                     <h3 class="project-title">Featured work goes here</h3>
                     <p class="project-description">
                         Add real project data in the portfolio dataset and the case study layout is ready to
@@ -173,7 +173,7 @@
         </div>
 
         <div class="operating-grid">
-            <div class="principles surface-panel">
+            <div class="principles" faPanel>
                 <h3>Design principles</h3>
                 @for (principle of principles; track principle.title) {
                     <article class="principle-item">
@@ -183,7 +183,7 @@
                 }
             </div>
 
-            <div class="process surface-panel">
+            <div class="process" faPanel>
                 <h3>Delivery process</h3>
                 @for (step of process; track step.label) {
                     <article class="process-item">
@@ -196,7 +196,7 @@
         </div>
     </section>
 
-    <section class="cta surface-panel">
+    <section class="cta" faPanel>
         <div class="cta-copy">
             <span class="eyebrow">Need a portfolio or product frontend like this?</span>
             <h2>Let's build something that feels premium before a visitor reads a single line.</h2>
@@ -208,7 +208,7 @@
 
         <div class="cta-actions">
             <a routerLink="/contact" class="hero-action hero-action-primary">Book a conversation</a>
-            <a routerLink="/experience" class="hero-action hero-action-secondary">View experience</a>
+<!--            <a routerLink="/experience" class="hero-action hero-action-secondary">View experience</a>-->
         </div>
     </section>
 </div>

@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {SKILLS} from '../../data/skills.data';
-import {SKILL_CATEGORIES} from '../../models/skill.model';
+import {Skill, SKILL_CATEGORIES} from '../../models/skill.model';
 
 
 @Component({
@@ -38,30 +38,8 @@ export class AboutComponent {
         }
     ];
 
-    interests = [
-        {
-            icon: 'ðŸ“š',
-            title: 'Continuous Learning',
-            description: 'Always exploring new technologies and best practices in software development.'
-        },
-        {
-            icon: 'ðŸŽ®',
-            title: 'Open Source',
-            description: 'Contributing to open-source projects and sharing knowledge with the community.'
-        },
-        {
-            icon: 'âœï¸',
-            title: 'Technical Writing',
-            description: 'Writing articles and tutorials to help other developers learn and grow.'
-        },
-        {
-            icon: 'ðŸƒ',
-            title: 'Fitness',
-            description: 'Staying active and maintaining a healthy work-life balance.'
-        }
-    ];
 
-    getSkillsByCategory(category: string) {
+    getSkillsByCategory(category: string): Skill[] {
         return this.skills.filter((skill) => skill.category === category);
     }
 }

@@ -1,12 +1,13 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {RouterLink} from '@angular/router';
+import {PanelComponent} from '../../components/shared/panel/panel.component';
 import {ProjectCategory, PROJECT_CATEGORIES} from '../../models/project.model';
 import {ProjectsService} from '../../services/projects.service';
 
 
 @Component({
     selector: 'fa-projects',
-    imports: [RouterLink],
+    imports: [RouterLink, PanelComponent],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './projects.component.html',
     styleUrl: './projects.component.scss'

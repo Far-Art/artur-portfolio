@@ -29,19 +29,22 @@
         <section class="skills">
             <h2 class="section-title">Skills & Technologies</h2>
             @for (category of categories; track category.key) {
-                <div class="skill-category">
-                    <h3 class="category-title">{{ category.label }}</h3>
-                    <div class="skills-grid">
-                        @for (skill of getSkillsByCategory(category.key); track skill.name) {
-                            <div class="skill-item" [class]="'level-' + skill.level">
-                                <span class="skill-name">{{ skill.name }}</span>
-                                @if (skill.level) {
-                                    <span class="skill-level">{{ skill.level }}</span>
-                                }
-                            </div>
-                        }
+                @let skills = getSkillsByCategory(category.key);
+                @if (skills.length === 0) {
+                    <div class="skill-category">
+                        <h3 class="category-title">{{ category.label }}</h3>
+                        <div class="skills-grid">
+                            @for (skill of skills; track skill.name) {
+                                <div class="skill-item" [class]="'level-' + skill.level">
+                                    <span class="skill-name">{{ skill.name }}</span>
+                                    @if (skill.level) {
+                                        <span class="skill-level">{{ skill.level }}</span>
+                                    }
+                                </div>
+                            }
+                        </div>
                     </div>
-                </div>
+                }
             }
         </section>
 
@@ -56,19 +59,6 @@
                             <p class="timeline-institution">{{ item.institution }}</p>
                             <p class="timeline-date">{{ item.date }}</p>
                         </div>
-                    </div>
-                }
-            </div>
-        </section>
-
-        <section class="interests">
-            <h2 class="section-title">Beyond Code</h2>
-            <div class="interests-grid">
-                @for (interest of interests; track interest.title) {
-                    <div class="interest-card">
-                        <div class="interest-icon">{{ interest.icon }}</div>
-                        <h3 class="interest-title">{{ interest.title }}</h3>
-                        <p class="interest-description">{{ interest.description }}</p>
                     </div>
                 }
             </div>

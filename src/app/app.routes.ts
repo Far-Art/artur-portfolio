@@ -21,11 +21,11 @@ export const routes: Routes = [
         (m) => m.ProjectDetailComponent
       ),
   },
-  {
-    path: 'experience',
-    loadComponent: () =>
-      import('./pages/experience/experience.component').then((m) => m.ExperienceComponent),
-  },
+  // {
+  //   path: 'experience',
+  //   loadComponent: () =>
+  //     import('./pages/experience/experience.component').then((m) => m.ExperienceComponent),
+  // },
   {
     path: 'contact',
     loadComponent: () =>

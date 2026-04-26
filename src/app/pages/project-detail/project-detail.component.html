@@ -3,7 +3,7 @@
         <div class="container">
             <a routerLink="/projects" class="back-link">Back to projects</a>
 
-            <header class="project-hero surface-panel">
+            <header class="project-hero" faPanel>
                 <div class="project-hero-copy">
                     <p class="project-category">{{ projectCategoryLabel(project.category) }}</p>
                     <h1 class="project-title">{{ project.title }}</h1>
@@ -70,7 +70,7 @@
                     <h2 class="section-title">Related projects</h2>
                     <div class="projects-grid">
                         @for (relatedProject of relatedProjects(); track relatedProject.id) {
-                            <article class="project-card surface-panel">
+                            <article class="project-card" faPanel>
                                 <p class="card-category">{{ projectCategoryLabel(relatedProject.category) }}</p>
                                 <h3 class="card-title">{{ relatedProject.title }}</h3>
                                 <p class="card-description">{{ relatedProject.shortDescription }}</p>
@@ -84,7 +84,7 @@
     </div>
 } @else {
     <div class="not-found">
-        <div class="container surface-panel">
+        <div class="container" faPanel>
             <h1>Project not found</h1>
             <p>The project you're looking for doesn't exist.</p>
             <a routerLink="/projects" class="action-link">Back to projects</a>

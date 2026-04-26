@@ -1,10 +1,11 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {PanelComponent} from '../../shared/panel/panel.component';
 import {SOCIAL_LINKS} from '../../../data/social.data';
 
 
 @Component({
     selector: 'fa-footer',
-    imports: [],
+    imports: [PanelComponent],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './footer.component.html',
     styleUrl: './footer.component.scss'

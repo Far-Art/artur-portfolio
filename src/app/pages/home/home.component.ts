@@ -9,6 +9,7 @@ import {
     inject
 } from '@angular/core';
 import {RouterLink} from '@angular/router';
+import {PanelComponent} from '../../components/shared/panel/panel.component';
 import {PROJECT_CATEGORIES} from '../../models/project.model';
 import {BrandTransitionService} from '../../services/brand-transition.service';
 import {ProjectsService} from '../../services/projects.service';
@@ -39,7 +40,7 @@ interface ProcessStep {
 
 @Component({
     selector: 'fa-home',
-    imports: [RouterLink],
+    imports: [RouterLink, PanelComponent],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'

@@ -1,13 +1,14 @@
 import {DatePipe} from '@angular/common';
 import {ChangeDetectionStrategy, Component, computed, inject, input} from '@angular/core';
 import {RouterLink} from '@angular/router';
+import {PanelComponent} from '../../components/shared/panel/panel.component';
 import {ProjectCategory, PROJECT_CATEGORIES} from '../../models/project.model';
 import {ProjectsService} from '../../services/projects.service';
 
 
 @Component({
     selector: 'fa-project-detail',
-    imports: [RouterLink, DatePipe],
+    imports: [RouterLink, DatePipe, PanelComponent],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './project-detail.component.html',
     styleUrl: './project-detail.component.scss'
