@@ -114,13 +114,6 @@ img {
     transform: translateY(0);
 }
 
-.surface-panel {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-soft);
-    backdrop-filter: blur(18px);
-}
-
 .eyebrow {
     display: inline-flex;
     align-items: center;

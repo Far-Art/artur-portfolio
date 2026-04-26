@@ -5,9 +5,6 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
     selector: 'fa-panel, [faPanel]',
     template: '<ng-content />',
     styleUrl: './panel.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: {
-        class: 'surface-panel'
-    }
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PanelComponent {}
