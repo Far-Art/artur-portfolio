@@ -1,29 +1,29 @@
-svg {
-    pointer-events: none;
-}
-.cls-1 {
-    fill: #1f242b;
+:host {
+    --logo-fill-primary: #1f242b;
+    --logo-fill-secondary: #566176;
+
+    display: block;
+    position: fixed;
+    width: 100px;
+    translate: -50% -50%;
+    left: 50%;
+    top: 50%;
+
+    svg {
+        pointer-events: none;
+
+        .shape {
+            fill: var(--logo-fill-primary);
+        }
+
+        .stripe {
+            fill: var(--logo-fill-secondary);
+        }
+
+    }
 }
 
-.cls-1, .cls-2 {
-    stroke-width: 0px;
-}
-
-.cls-3, .cls-4 {
-    isolation: isolate;
-}
-
-.cls-3, .cls-5 {
-    display: none;
-}
-
-.cls-6 {
-    fill: none;
-    stroke: #566176;
-    stroke-linecap: round;
-    stroke-width: 3px;
-}
-
-.cls-2 {
-    fill: #566176;
+:host-context([data-theme='dark']) {
+    --logo-fill-primary: #f5efe7;
+    --logo-fill-secondary: #cbc2b8;
 }
