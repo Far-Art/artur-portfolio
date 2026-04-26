@@ -62,9 +62,9 @@ export class HomeComponent {
 
     readonly heroMetrics: HeroMetric[] = [
         {
-            value: '5+',
-            label: 'Years shipping interfaces',
-            detail: 'Focused on maintainable frontends and polished user journeys.'
+            value: '4+',
+            label: 'Years shipping products',
+            detail: 'Focused on maintainable applications, sharp visuals, and polished user journeys.'
         },
         {
             value: 'A11y',

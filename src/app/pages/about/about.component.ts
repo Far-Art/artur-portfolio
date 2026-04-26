@@ -12,7 +12,7 @@ import {Skill, SKILL_CATEGORIES} from '../../models/skill.model';
     styleUrl: './about.component.scss'
 })
 export class AboutComponent {
-    yearsOfExperience = 5;
+    yearsOfExperience = 4;
     skills = SKILLS;
 
     categories = Object.entries(SKILL_CATEGORIES).map(([key, label]) => ({
