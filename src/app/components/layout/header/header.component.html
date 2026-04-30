@@ -6,23 +6,69 @@
 
     <nav class="nav-container" aria-label="Primary" faPanel>
 
-        <ul class="nav-links" role="list">
+        <ul
+            #navLinks
+            class="nav-links"
+            role="list"
+            (mouseleave)="handleListPointerLeave()"
+            (focusout)="handleListFocusOut($event)"
+            (scroll)="handleViewportChange()">
+            <li
+                class="nav-indicator"
+                aria-hidden="true"
+                role="presentation"
+                [style.width.px]="indicatorWidth()"
+                [style.height.px]="indicatorHeight()"
+                [style.opacity]="indicatorOpacity()"
+                [style.transform]="indicatorTransform()">
+            </li>
             <li>
-                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a
+                    #homeLink
+                    routerLink="/"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    (mouseenter)="setInteractionTarget(homeLink)"
+                    (focus)="setInteractionTarget(homeLink)"
+                    (isActiveChange)="handleRouteActiveChange(homeLink, $event)">
                     Home
                 </a>
             </li>
             <li>
-                <a routerLink="/about" routerLinkActive="active">About</a>
+                <a
+                    #aboutLink
+                    routerLink="/about"
+                    routerLinkActive="active"
+                    (mouseenter)="setInteractionTarget(aboutLink)"
+                    (focus)="setInteractionTarget(aboutLink)"
+                    (isActiveChange)="handleRouteActiveChange(aboutLink, $event)">
+                    About
+                </a>
             </li>
             <li>
-                <a routerLink="/projects" routerLinkActive="active">Projects</a>
+                <a
+                    #projectsLink
+                    routerLink="/projects"
+                    routerLinkActive="active"
+                    (mouseenter)="setInteractionTarget(projectsLink)"
+                    (focus)="setInteractionTarget(projectsLink)"
+                    (isActiveChange)="handleRouteActiveChange(projectsLink, $event)">
+                    Projects
+                </a>
             </li>
-<!--            <li>-->
-<!--                <a routerLink="/experience" routerLinkActive="active">Experience</a>-->
-<!--            </li>-->
+            <!--            <li>-->
+            <!--                <a routerLink="/experience" routerLinkActive="active">Experience</a>-->
+            <!--            </li>-->
             <li>
-                <a routerLink="/contact" routerLinkActive="active">Contact</a>
+                <a
+                    #contactLink
+                    routerLink="/contact"
+                    routerLinkActive="active"
+                    (mouseenter)="setInteractionTarget(contactLink)"
+                    (focus)="setInteractionTarget(contactLink)"
+                    (isActiveChange)="handleRouteActiveChange(contactLink, $event)">
+                    Contact
+                </a>
             </li>
         </ul>
 

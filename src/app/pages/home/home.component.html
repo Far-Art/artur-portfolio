@@ -46,38 +46,7 @@
         <a routerLink="/projects" class="hero-action hero-action-primary">Explore projects</a>
         <a routerLink="/contact" class="hero-action hero-action-secondary">Start a project</a>
       </div>
-
-      <!--            <ul class="pill-list hero-signals" role="list">-->
-      <!--                @for (signal of heroSignals; track signal) {-->
-      <!--                    <li class="pill">{{ signal }}</li>-->
-      <!--                }-->
-      <!--            </ul>-->
     </div>
-
-    <!--        <aside class="hero-panel" aria-label="Developer snapshot" faPanel>-->
-    <!--            <div class="panel-header">-->
-    <!--                <p class="panel-label">Developer snapshot</p>-->
-    <!--                <span class="status-chip">Open to freelance and product work</span>-->
-    <!--            </div>-->
-
-    <!--            <div class="signal-grid">-->
-    <!--                @for (metric of heroMetrics; track metric.label) {-->
-    <!--                    <section class="signal-card">-->
-    <!--                        <p class="signal-value">{{ metric.value }}</p>-->
-    <!--                        <h3 class="signal-label">{{ metric.label }}</h3>-->
-    <!--                        <p class="signal-detail">{{ metric.detail }}</p>-->
-    <!--                    </section>-->
-    <!--                }-->
-    <!--            </div>-->
-
-    <!--            <div class="focus-card">-->
-    <!--                <p class="focus-label">Current focus</p>-->
-    <!--                <p class="focus-copy">-->
-    <!--                    Angular interfaces, design systems, and portfolio experiences that feel premium on first-->
-    <!--                    contact and hold up under real product constraints.-->
-    <!--                </p>-->
-    <!--            </div>-->
-    <!--        </aside>-->
   </section>
 
   <section class="capabilities">
@@ -100,68 +69,6 @@
       }
     </div>
   </section>
-
-  <!--    <section class="featured-projects">-->
-  <!--        <div class="section-heading">-->
-  <!--            <span class="eyebrow">Selected work</span>-->
-  <!--            <h2>Case studies framed around impact, not screenshots.</h2>-->
-  <!--            <p>-->
-  <!--                Each project card is written like a client-facing pitch: what it is, why it matters, and-->
-  <!--                which technologies shaped the result.-->
-  <!--            </p>-->
-  <!--        </div>-->
-
-  <!--        <div class="project-grid">-->
-  <!--            @for (project of caseStudies(); track project.id) {-->
-  <!--                <article class="project-card" faPanel>-->
-  <!--                    <div class="project-card-header">-->
-  <!--                        <p class="project-category">{{ project.categoryLabel }}</p>-->
-  <!--                        @if (project.featured) {-->
-  <!--                            <span class="project-badge">Featured</span>-->
-  <!--                        }-->
-  <!--                    </div>-->
-
-  <!--                    <h3 class="project-title">{{ project.title }}</h3>-->
-  <!--                    <p class="project-description">{{ project.shortDescription }}</p>-->
-
-  <!--                    <div class="project-visual" aria-hidden="true">-->
-  <!--                        <span class="project-visual-label">Impact layer</span>-->
-  <!--                        <strong>{{ project.heroHighlight }}</strong>-->
-  <!--                        <span>{{ project.timeline }}</span>-->
-  <!--                    </div>-->
-
-  <!--                    <ul class="project-highlights" role="list">-->
-  <!--                        @for (highlight of project.highlights; track highlight) {-->
-  <!--                            <li>{{ highlight }}</li>-->
-  <!--                        }-->
-  <!--                    </ul>-->
-
-  <!--                    <ul class="pill-list" role="list">-->
-  <!--                        @for (tech of project.technologies; track tech) {-->
-  <!--                            <li class="pill">{{ tech }}</li>-->
-  <!--                        }-->
-  <!--                    </ul>-->
-
-  <!--                    <div class="project-actions">-->
-  <!--                        <a [routerLink]="['/projects', project.id]" class="project-link">Read case study</a>-->
-  <!--                        @if (project.liveUrl) {-->
-  <!--                            <a [href]="project.liveUrl" target="_blank" rel="noopener" class="project-link">-->
-  <!--                                Live preview-->
-  <!--                            </a>-->
-  <!--                        }-->
-  <!--                    </div>-->
-  <!--                </article>-->
-  <!--            } @empty {-->
-  <!--                <article class="project-card" faPanel>-->
-  <!--                    <h3 class="project-title">Featured work goes here</h3>-->
-  <!--                    <p class="project-description">-->
-  <!--                        Add real project data in the portfolio dataset and the case study layout is ready to-->
-  <!--                        showcase it.-->
-  <!--                    </p>-->
-  <!--                </article>-->
-  <!--            }-->
-  <!--        </div>-->
-  <!--    </section>-->
 
   <section class="operating-system">
     <div class="section-heading">
@@ -210,7 +117,6 @@
 
     <div class="cta-actions">
       <a routerLink="/contact" class="hero-action hero-action-primary">Book a conversation</a>
-      <!--            <a routerLink="/experience" class="hero-action hero-action-secondary">View experience</a>-->
     </div>
   </section>
 </div>
