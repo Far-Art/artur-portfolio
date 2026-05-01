@@ -1,7 +1,7 @@
 import {DOCUMENT, isPlatformBrowser} from '@angular/common';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {Component, DestroyRef, PLATFORM_ID, computed, inject} from '@angular/core';
-import {NavigationStart, Router, RouterLink, RouterOutlet} from '@angular/router';
+import {NavigationEnd, Router, RouterLink, RouterOutlet} from '@angular/router';
 import {filter} from 'rxjs';
 import {BrandTransitionService} from './services/brand-transition.service';
 import {HeaderComponent} from './components/layout/header/header.component';
@@ -32,7 +32,7 @@ export class App {
 
         this.router.events
             .pipe(
-                filter((event): event is NavigationStart => event instanceof NavigationStart),
+                filter((event): event is NavigationEnd => event instanceof NavigationEnd),
                 takeUntilDestroyed(this.destroyRef)
             )
             .subscribe(() => {
