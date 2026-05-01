@@ -12,15 +12,13 @@ import {Skill, SKILL_CATEGORIES} from '../../models/skill.model';
     styleUrl: './about.component.scss'
 })
 export class AboutComponent {
-    yearsOfExperience = 4;
-    skills = SKILLS;
-
-    categories = Object.entries(SKILL_CATEGORIES).map(([key, label]) => ({
+    readonly yearsOfExperience = 4;
+    readonly skills = SKILLS;
+    readonly categories = Object.entries(SKILL_CATEGORIES).map(([key, label]) => ({
         key: key as keyof typeof SKILL_CATEGORIES,
         label
     }));
-
-    education = [
+    readonly education = [
         {
             title: 'Bachelor of Science in Computer Science',
             institution: 'University Name',
@@ -38,8 +36,8 @@ export class AboutComponent {
         }
     ];
 
-
     getSkillsByCategory(category: string): Skill[] {
         return this.skills.filter((skill) => skill.category === category);
     }
+
 }
