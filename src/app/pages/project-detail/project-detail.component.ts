@@ -2,8 +2,9 @@ import {DatePipe} from '@angular/common';
 import {ChangeDetectionStrategy, Component, computed, inject, input} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {PanelComponent} from '../../components/shared/panel/panel.component';
-import {ProjectCategory, PROJECT_CATEGORIES} from '../../models/project.model';
+import {Project, ProjectCategory} from '../../models/project.model';
 import {ProjectsService} from '../../services/projects.service';
+import {I18nService, TranslationKey} from '../../services/i18n.service';
 
 
 @Component({
@@ -15,6 +16,7 @@ import {ProjectsService} from '../../services/projects.service';
 })
 export class ProjectDetailComponent {
     private readonly projectsService = inject(ProjectsService);
+    private readonly i18n = inject(I18nService);
 
     readonly id = input.required<string>();
 
@@ -29,6 +31,30 @@ export class ProjectDetailComponent {
     });
 
     projectCategoryLabel(category: ProjectCategory): string {
-        return PROJECT_CATEGORIES[category];
+        return this.i18n.projectCategoryLabel(category);
+    }
+
+    projectTitle(project: Project): string {
+        return this.i18n.projectTitle(project.id, project.title);
+    }
+
+    projectShortDescription(project: Project): string {
+        return this.i18n.projectShortDescription(project.id, project.shortDescription);
+    }
+
+    projectFullDescription(project: Project): string {
+        return this.i18n.projectFullDescription(project.id, project.fullDescription);
+    }
+
+    projectHighlight(project: Project, highlightIndex: number): string {
+        return this.i18n.projectHighlight(project.id, highlightIndex, project.highlights[highlightIndex] ?? '');
+    }
+
+    t(key: TranslationKey, params: Record<string, string | number> = {}): string {
+        return this.i18n.translate(key, params);
+    }
+
+    locale(): string {
+        return this.i18n.locale();
     }
 }

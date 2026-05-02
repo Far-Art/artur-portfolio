@@ -7,6 +7,7 @@ import {BrandTransitionService} from './services/brand-transition.service';
 import {HeaderComponent} from './components/layout/header/header.component';
 import {FooterComponent} from './components/layout/footer/footer.component';
 import {Logo} from './logo/logo';
+import {I18nService, TranslationKey} from './services/i18n.service';
 
 
 @Component({
@@ -17,6 +18,7 @@ import {Logo} from './logo/logo';
 })
 export class App {
     private readonly brandTransitionService = inject(BrandTransitionService);
+    private readonly i18n = inject(I18nService);
     private readonly router = inject(Router);
     private readonly destroyRef = inject(DestroyRef);
     private readonly document = inject(DOCUMENT);
@@ -24,6 +26,10 @@ export class App {
     private hasHandledInitialNavigation = false;
 
     readonly brandProgress = computed(() => `${this.brandTransitionService.progress()}`);
+
+    t(key: TranslationKey): string {
+        return this.i18n.translate(key);
+    }
 
     constructor() {
         if (!isPlatformBrowser(this.platformId)) {

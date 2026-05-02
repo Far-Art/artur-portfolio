@@ -1,4 +1,4 @@
-<a class="skip-link" href="#main-content">Skip to content</a>
+<a class="skip-link" href="#main-content">{{ t('skipToContent') }}</a>
 <div class="fa-shell">
     <div class="fa-backdrop" aria-hidden="true">
         <div class="fa-grid"></div>
@@ -11,7 +11,7 @@
 
     <a routerLink="/"
        class="brand-logo-link"
-       aria-label="Artur portfolio home"
+       [attr.aria-label]="t('brandHomeLabel')"
        [class.no-click]="brandProgress() === '0'"
        [class.drop-shadow]="brandProgress() === '1'"
        [style.--brand-progress]="brandProgress()">

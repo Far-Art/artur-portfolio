@@ -1,5 +1,5 @@
 <div class="home">
-    <section class="brand-stage" aria-label="Brand intro">
+    <section class="brand-stage" [attr.aria-label]="t('brandIntro')">
         <div
             class="brand-overlay"
             aria-hidden="true"
@@ -7,13 +7,12 @@
         >
             <div class="brand-overlay-container">
                 <h1 class="brand-overlay-title">
-                    <span>Artur</span>
-                    <span>Farmanov</span>
+                    <span>Artur Farmanov</span>
                 </h1>
                 <div class="brand-overlay-separator">&#123; &#125;</div>
-                <p class="brand-overlay-kicker">Software Developer</p>
+                <p class="brand-overlay-kicker">{{ t('role') }}</p>
                 <p class="brand-overlay-subtitle">
-                    Java, Spring Boot, Angular, and React applications shaped around performance and visuals.
+                    {{ t('brandSubtitle') }}
                 </p>
             </div>
         </div>
@@ -21,46 +20,42 @@
         <a
             class="brand-scroll-cue"
             href="#home-hero"
-            aria-label="Scroll to portfolio content"
+            [attr.aria-label]="t('scrollToContent')"
             (click)="scrollToHero($event)"
             [style.--brand-progress]="brandProgress()"
         >
-            <span class="eyebrow">Scroll to enter the portfolio</span>
+            <span class="eyebrow">{{ t('scrollToEnter') }}</span>
         </a>
     </section>
 
     <section id="home-hero" class="hero">
         <div class="hero-copy">
-            <span class="eyebrow">Full-stack portfolio engineered for impact</span>
+            <span class="eyebrow">{{ t('heroEyebrow') }}</span>
             <h2 class="hero-title">
-                Building immersive web products that look sharp, scale cleanly, and convert attention into
-                trust.
+                {{ t('heroTitle') }}
             </h2>
             <p class="hero-description">
-                I build Java, Spring, Spring Boot, Angular, and React applications for individuals and teams that care about
-                fast, polished products. The work stays accessible, scalable, and performance-conscious from
-                the first concept to the final release.
+                {{ t('heroDescription') }}
             </p>
 
-            <div class="hero-actions">
+<!--            <div class="hero-actions">-->
 <!--                <a routerLink="/projects" class="hero-action hero-action-primary">Explore projects</a>-->
 <!--                <a routerLink="/contact" class="hero-action hero-action-secondary">Start a project</a>-->
-            </div>
+<!--            </div>-->
         </div>
     </section>
 
     <section class="capabilities">
         <div class="section-heading">
-            <span class="eyebrow">What clients notice</span>
-            <h2>The portfolio behaves like a product, not a brochure.</h2>
+            <span class="eyebrow">{{ t('clientsNotice') }}</span>
+            <h2>{{ t('productNotBrochure') }}</h2>
             <p>
-                The visual language is immersive, but the real differentiator is clarity: outcomes,
-                architecture, and trust signals are always visible.
+                {{ t('clientsNoticeDescription') }}
             </p>
         </div>
 
         <div class="capability-grid">
-            @for (card of capabilityCards; track card.title) {
+            @for (card of capabilityCards(); track card.title) {
                 <article class="capability-card" faPanel>
                     <p class="capability-tag">{{ card.tag }}</p>
                     <h3>{{ card.title }}</h3>
@@ -72,18 +67,17 @@
 
     <section class="operating-system">
         <div class="section-heading">
-            <span class="eyebrow">How the work is shaped</span>
-            <h2>An immersive layout still needs engineering discipline under it.</h2>
+            <span class="eyebrow">{{ t('workShaped') }}</span>
+            <h2>{{ t('disciplineTitle') }}</h2>
             <p>
-                Visual atmosphere matters, but the strongest portfolios also explain judgment:
-                accessibility, performance, hierarchy, and product thinking.
+                {{ t('disciplineDescription') }}
             </p>
         </div>
 
         <div class="operating-grid">
             <div class="principles" faPanel>
-                <h3>Design principles</h3>
-                @for (principle of principles; track principle.title) {
+                <h3>{{ t('designPrinciples') }}</h3>
+                @for (principle of principles(); track principle.title) {
                     <article class="principle-item">
                         <h4>{{ principle.title }}</h4>
                         <p>{{ principle.description }}</p>
@@ -92,8 +86,8 @@
             </div>
 
             <div class="process" faPanel>
-                <h3>Delivery process</h3>
-                @for (step of process; track step.label) {
+                <h3>{{ t('deliveryProcess') }}</h3>
+                @for (step of process(); track step.label) {
                     <article class="process-item">
                         <p class="process-label">{{ step.label }}</p>
                         <h4>{{ step.title }}</h4>
@@ -106,15 +100,14 @@
 
     <section class="cta" faPanel>
         <div class="cta-copy">
-            <h2>Let's build something that feels premium before a visitor reads a single line.</h2>
+            <h2>{{ t('ctaTitle') }}</h2>
             <p>
-                This direction combines a warm editorial palette, dashboard-like structure, and layered
-                motion so the site feels immersive without becoming noisy.
+                {{ t('ctaDescription') }}
             </p>
         </div>
 
         <div class="cta-actions">
-            <a routerLink="/contact" class="hero-action hero-action-primary">Book a conversation</a>
+            <a routerLink="/contact" class="hero-action hero-action-primary">{{ t('bookConversation') }}</a>
         </div>
     </section>
 </div>

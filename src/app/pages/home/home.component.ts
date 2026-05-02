@@ -11,6 +11,7 @@ import {
 import {RouterLink} from '@angular/router';
 import {PanelComponent} from '../../components/shared/panel/panel.component';
 import {BrandTransitionService} from '../../services/brand-transition.service';
+import {I18nService, TranslationKey} from '../../services/i18n.service';
 
 interface CapabilityCard {
   title: string;
@@ -37,64 +38,56 @@ interface ProcessStep {
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  private readonly i18n = inject(I18nService);
 
-  readonly capabilityCards: CapabilityCard[] = [
+  readonly capabilityCards = computed<CapabilityCard[]>(() => [
     {
-      tag: 'Immersion',
-      title: 'Layered atmosphere without visual noise',
-      description:
-        'Warm gradients, glassy surfaces, and structured spacing make the portfolio feel cinematic without sacrificing readability.'
+      tag: this.t('capabilityImmersionTag'),
+      title: this.t('capabilityImmersionTitle'),
+      description: this.t('capabilityImmersionDescription')
     },
     {
-      tag: 'Credibility',
-      title: 'Case studies written for decision-makers',
-      description:
-        'Projects are framed by role, outcome, and technical choices so visitors understand value quickly.'
+      tag: this.t('capabilityCredibilityTag'),
+      title: this.t('capabilityCredibilityTitle'),
+      description: this.t('capabilityCredibilityDescription')
     },
     {
-      tag: 'Execution',
-      title: 'Engineered like a production frontend',
-      description:
-        'Angular architecture, responsive layouts, and accessible states keep the portfolio impressive and dependable.'
+      tag: this.t('capabilityExecutionTag'),
+      title: this.t('capabilityExecutionTitle'),
+      description: this.t('capabilityExecutionDescription')
     }
-  ];
-  readonly principles: Principle[] = [
+  ]);
+  readonly principles = computed<Principle[]>(() => [
     {
-      title: 'Clear hierarchy',
-      description:
-        'Every section pushes one primary idea so visitors never wonder where to look next.'
+      title: this.t('principleHierarchyTitle'),
+      description: this.t('principleHierarchyDescription')
     },
     {
-      title: 'Warm technical palette',
-      description:
-        'Sand, charcoal, teal, and copper create a premium tone that avoids the overused dark-purple portfolio look.'
+      title: this.t('principlePaletteTitle'),
+      description: this.t('principlePaletteDescription')
     },
     {
-      title: 'Measured motion',
-      description:
-        'Depth comes from layered backgrounds, subtle drift, and restrained hover states instead of constant animation.'
+      title: this.t('principleMotionTitle'),
+      description: this.t('principleMotionDescription')
     }
-  ];
-  readonly process: ProcessStep[] = [
+  ]);
+  readonly process = computed<ProcessStep[]>(() => [
     {
       label: '01',
-      title: 'Shape the narrative',
-      description:
-        'Lead with the strongest promise, then back it up with proof, work samples, and a confident call to action.'
+      title: this.t('processNarrativeTitle'),
+      description: this.t('processNarrativeDescription')
     },
     {
       label: '02',
-      title: 'Build the experience system',
-      description:
-        'Typography, palette, surfaces, spacing, and interaction states are treated as one coherent product language.'
+      title: this.t('processSystemTitle'),
+      description: this.t('processSystemDescription')
     },
     {
       label: '03',
-      title: 'Refine for trust',
-      description:
-        'Accessibility, responsiveness, and load behavior are refined so the portfolio feels finished on every screen.'
+      title: this.t('processTrustTitle'),
+      description: this.t('processTrustDescription')
     }
-  ];
+  ]);
   private readonly brandTransitionService = inject(BrandTransitionService);
   readonly brandProgress = computed(() => `${this.brandTransitionService.progress()}`);
   private readonly destroyRef = inject(DestroyRef);
@@ -153,6 +146,10 @@ export class HomeComponent {
         this.brandTransitionService.deactivate();
       });
     });
+  }
+
+  t(key: TranslationKey): string {
+    return this.i18n.translate(key);
   }
 
   scrollToHero(event: MouseEvent): void {

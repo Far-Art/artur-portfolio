@@ -1,11 +1,10 @@
 <footer class="footer">
     <div class="footer-container" faPanel>
         <div class="footer-heading">
-            <p class="footer-kicker">Ready for the next build?</p>
-            <h2>Design-forward engineering with product discipline.</h2>
+            <p class="footer-kicker">{{ t('footerKicker') }}</p>
+            <h2>{{ t('footerTitle') }}</h2>
             <p class="footer-description">
-                Available for portfolio sites, product frontends, and Angular interfaces that need to feel
-                polished from the first scroll.
+                {{ t('footerDescription') }}
             </p>
         </div>
 
@@ -26,8 +25,8 @@
             </div>
 
             <div class="footer-meta">
-                <p class="copyright">Copyright {{ currentYear }} Artur. Built for modern web clients.</p>
-                <p class="built-with">Angular {{ angularVersion }} - TypeScript - Accessible UI</p>
+                <p class="copyright">{{ t('copyright', {year: currentYear}) }}</p>
+                <p class="built-with">{{ t('builtWith', {version: angularVersion}) }}</p>
             </div>
         </div>
     </div>

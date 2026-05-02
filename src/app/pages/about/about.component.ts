@@ -1,7 +1,8 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, inject} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {SKILLS} from '../../data/skills.data';
-import {Skill, SKILL_CATEGORIES} from '../../models/skill.model';
+import {Skill, SkillCategory} from '../../models/skill.model';
+import {I18nService, TranslationKey} from '../../services/i18n.service';
 
 
 @Component({
@@ -12,12 +13,17 @@ import {Skill, SKILL_CATEGORIES} from '../../models/skill.model';
     styleUrl: './about.component.scss'
 })
 export class AboutComponent {
+    private readonly i18n = inject(I18nService);
+
     readonly yearsOfExperience = 4;
     readonly skills = SKILLS;
-    readonly categories = Object.entries(SKILL_CATEGORIES).map(([key, label]) => ({
-        key: key as keyof typeof SKILL_CATEGORIES,
-        label
-    }));
+    readonly categories = computed(() => [
+        {key: 'frontend' as const, label: this.t('categoryFrontend')},
+        {key: 'backend' as const, label: this.t('categoryBackend')},
+        {key: 'database' as const, label: this.t('categoryDatabase')},
+        {key: 'tools' as const, label: this.t('categoryTools')},
+        {key: 'other' as const, label: this.t('categoryOther')}
+    ]);
     readonly education = [
         {
             title: 'Bachelor of Science in Computer Science',
@@ -36,7 +42,11 @@ export class AboutComponent {
         }
     ];
 
-    getSkillsByCategory(category: string): Skill[] {
+    t(key: TranslationKey, params: Record<string, string | number> = {}): string {
+        return this.i18n.translate(key, params);
+    }
+
+    getSkillsByCategory(category: SkillCategory): Skill[] {
         return this.skills.filter((skill) => skill.category === category);
     }
 

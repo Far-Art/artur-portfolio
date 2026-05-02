@@ -1,10 +1,28 @@
-import { TestBed } from '@angular/core/testing';
-import { App } from './app';
+import {TestBed} from '@angular/core/testing';
+import {provideRouter} from '@angular/router';
+import {App} from './app';
 
 describe('App', () => {
+  beforeAll(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: (query: string): MediaQueryList => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: () => undefined,
+        removeListener: () => undefined,
+        addEventListener: () => undefined,
+        removeEventListener: () => undefined,
+        dispatchEvent: () => false
+      })
+    });
+  });
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
+      providers: [provideRouter([])]
     }).compileComponents();
   });
 
@@ -14,10 +32,13 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render the localized app shell', async () => {
     const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
     await fixture.whenStable();
+
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, artur-portfolio');
+    expect(compiled.querySelector('.skip-link')?.textContent).toContain('Skip to content');
+    expect(compiled.querySelector('fa-header')?.textContent).toContain('Home');
   });
 });

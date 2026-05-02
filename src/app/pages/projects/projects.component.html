@@ -1,10 +1,9 @@
 <div class="projects">
     <div class="container">
-        <span class="eyebrow">Selected builds</span>
-        <h1 class="page-title">Projects framed as product stories.</h1>
+        <span class="eyebrow">{{ t('selectedBuilds') }}</span>
+        <h1 class="page-title">{{ t('projectsTitle') }}</h1>
         <p class="page-description">
-            A strong portfolio does more than list technologies. It explains the type of product, the
-            outcome it aimed for, and the engineering choices behind it.
+            {{ t('projectsDescription') }}
         </p>
 
         <div class="filters">
@@ -14,9 +13,9 @@
                 [class.active]="currentCategory() === 'all'"
                 (click)="setCategory('all')"
             >
-                All Projects
+                {{ t('allProjects') }}
             </button>
-            @for (category of categories; track category.key) {
+            @for (category of categories(); track category.key) {
                 <button
                     class="filter-btn"
                     type="button"
@@ -34,17 +33,17 @@
                     <div class="project-header">
                         <p class="project-category">{{ getCategoryLabel(project.category) }}</p>
                         @if (project.featured) {
-                            <div class="featured-badge">Featured</div>
+                            <div class="featured-badge">{{ t('featured') }}</div>
                         }
                     </div>
 
-                    <h2 class="project-title">{{ project.title }}</h2>
-                    <p class="project-description">{{ project.shortDescription }}</p>
+                    <h2 class="project-title">{{ projectTitle(project) }}</h2>
+                    <p class="project-description">{{ projectShortDescription(project) }}</p>
 
                     <div class="project-visual" aria-hidden="true">
-                        <span>Build signal</span>
-                        <strong>{{ project.highlights[0] }}</strong>
-                        <span>{{ project.technologies.length }} technologies in stack</span>
+                        <span>{{ t('buildSignal') }}</span>
+                        <strong>{{ projectHighlight(project, 0) }}</strong>
+                        <span>{{ t('technologiesInStack', {count: project.technologies.length}) }}</span>
                     </div>
 
                     <div class="project-tech">
@@ -54,7 +53,7 @@
                     </div>
 
                     <div class="project-footer">
-                        <a [routerLink]="['/projects', project.id]" class="project-link">Read case study</a>
+                        <a [routerLink]="['/projects', project.id]" class="project-link">{{ t('readCaseStudy') }}</a>
                         <div class="project-links">
                             @if (project.githubUrl) {
                                 <a [href]="project.githubUrl" target="_blank" rel="noopener" class="project-link">
@@ -63,7 +62,7 @@
                             }
                             @if (project.liveUrl) {
                                 <a [href]="project.liveUrl" target="_blank" rel="noopener" class="project-link">
-                                    Live demo
+                                    {{ t('liveDemo') }}
                                 </a>
                             }
                         </div>
@@ -71,7 +70,7 @@
                 </article>
             } @empty {
                 <div class="empty-state" faPanel>
-                    <p>No projects found in this category.</p>
+                    <p>{{ t('noProjects') }}</p>
                 </div>
             }
         </div>

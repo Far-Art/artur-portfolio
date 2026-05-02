@@ -1,5 +1,6 @@
-import {Injectable, signal} from '@angular/core';
+import {Injectable, inject, signal} from '@angular/core';
 import {ContactForm} from '../models/contact.model';
+import {I18nService} from './i18n.service';
 
 
 export interface ContactSubmissionResult {
@@ -11,6 +12,8 @@ export interface ContactSubmissionResult {
     providedIn: 'root'
 })
 export class ContactService {
+    private readonly i18n = inject(I18nService);
+
     isSubmitting = signal(false);
 
     async submitContactForm(formData: ContactForm): Promise<ContactSubmissionResult> {
@@ -23,12 +26,12 @@ export class ContactService {
 
             return {
                 success: true,
-                message: 'Thank you for your message! I will get back to you soon.'
+                message: this.i18n.translate('contactSuccess')
             };
         } catch (error) {
             return {
                 success: false,
-                message: 'Failed to send message. Please try again or contact me directly via email.'
+                message: this.i18n.translate('contactError')
             };
         } finally {
             this.isSubmitting.set(false);

@@ -5,6 +5,7 @@ import {
     Component,
     ElementRef,
     computed,
+    effect,
     inject,
     signal,
     viewChild
@@ -13,6 +14,7 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
 import {PanelComponent} from '../../shared/panel/panel.component';
 import {BrandTransitionService} from '../../../services/brand-transition.service';
 import {ThemeService} from '../../../services/theme.service';
+import {I18nService, Language, TranslationKey} from '../../../services/i18n.service';
 
 interface IndicatorState {
     x: number;
@@ -36,8 +38,10 @@ interface IndicatorState {
 export class HeaderComponent {
     private readonly navLinks = viewChild.required<ElementRef<HTMLElement>>('navLinks');
     private readonly document = inject(DOCUMENT);
+    private readonly i18n = inject(I18nService);
     private readonly themeService = inject(ThemeService);
     readonly theme = this.themeService.theme;
+    readonly language = this.i18n.language;
     private readonly brandTransitionService = inject(BrandTransitionService);
     private readonly activeTarget = signal<HTMLElement | null>(null);
     private readonly interactionTarget = signal<HTMLElement | null>(null);
@@ -72,12 +76,34 @@ export class HeaderComponent {
     });
 
     constructor() {
+        effect(() => {
+            this.i18n.language();
+            requestAnimationFrame(() => this.syncIndicatorToCurrentTarget());
+        });
+
         afterNextRender(() => {
             requestAnimationFrame(() => {
                 this.syncActiveTargetFromDom();
                 this.syncIndicatorToCurrentTarget();
             });
         });
+    }
+
+    t(key: TranslationKey): string {
+        return this.i18n.translate(key);
+    }
+
+    setLanguage(event: Event): void {
+        const target = event.target;
+
+        if (!(target instanceof HTMLSelectElement)) {
+            return;
+        }
+
+        const language = target.value;
+        if (language === 'en' || language === 'he') {
+            this.i18n.setLanguage(language satisfies Language);
+        }
     }
 
     toggleTheme(event: MouseEvent): void {

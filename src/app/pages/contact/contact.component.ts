@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core'
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {SOCIAL_LINKS} from '../../data/social.data';
 import {ContactService} from '../../services/contact.service';
+import {I18nService, TranslationKey} from '../../services/i18n.service';
 
 
 @Component({
@@ -13,6 +14,7 @@ import {ContactService} from '../../services/contact.service';
 })
 export class ContactComponent {
     private readonly fb = inject(FormBuilder);
+    private readonly i18n = inject(I18nService);
     private readonly contactService = inject(ContactService);
 
     readonly socialLinks = SOCIAL_LINKS;
@@ -30,6 +32,10 @@ export class ContactComponent {
     isFieldInvalid(fieldName: string): boolean {
         const field = this.contactForm.get(fieldName);
         return !!(field && field.invalid && (field.dirty || field.touched));
+    }
+
+    t(key: TranslationKey): string {
+        return this.i18n.translate(key);
     }
 
     async onSubmit(): Promise<void> {

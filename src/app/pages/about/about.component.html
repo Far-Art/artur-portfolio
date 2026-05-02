@@ -1,28 +1,25 @@
 <div class="about">
     <div class="container">
         <section class="intro">
-            <h1 class="page-title">About Me</h1>
+            <h1 class="page-title">{{ t('aboutTitle') }}</h1>
             <div class="intro-content">
                 <div class="intro-text">
                     <p class="lead">
-                        I'm an experienced software developer with {{ yearsOfExperience }}+ years of building
-                        modern web applications.
+                        {{ t('aboutLead', {years: yearsOfExperience}) }}
                     </p>
                     <p>
-                        I work across Java, Spring, Spring Boot, Angular, and React to build scalable,
-                        maintainable applications. Performance and visuals are at the core of every product I
-                        ship, with clean architecture and strong user experience supporting both.
+                        {{ t('aboutDescription') }}
                     </p>
                     <div class="intro-actions">
-                        <a routerLink="/contact" class="btn btn-primary">Get In Touch</a>
+                        <a routerLink="/contact" class="btn btn-primary">{{ t('getInTouch') }}</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="skills">
-            <h2 class="section-title">Skills & Technologies</h2>
-            @for (category of categories; track category.key) {
+            <h2 class="section-title">{{ t('skillsTitle') }}</h2>
+            @for (category of categories(); track category.key) {
                 @let skills = getSkillsByCategory(category.key);
                 @if (skills.length > 0) {
                     <div class="skill-category">

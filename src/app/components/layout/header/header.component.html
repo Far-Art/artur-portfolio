@@ -4,7 +4,7 @@
     [style.transform]="headerTransform()"
     [style.pointer-events]="headerPointerEvents()">
 
-    <nav class="nav-container" aria-label="Primary" faPanel>
+    <nav class="nav-container" [attr.aria-label]="t('navAria')" faPanel>
 
         <ul
             #navLinks
@@ -31,7 +31,8 @@
                     (mouseenter)="setInteractionTarget(homeLink)"
                     (focus)="setInteractionTarget(homeLink)"
                     (isActiveChange)="handleRouteActiveChange(homeLink, $event)">
-                    Home
+                    <span class="material-symbols-rounded">home</span>
+                    {{ t('home') }}
                 </a>
             </li>
             <li>
@@ -42,7 +43,8 @@
                     (mouseenter)="setInteractionTarget(aboutLink)"
                     (focus)="setInteractionTarget(aboutLink)"
                     (isActiveChange)="handleRouteActiveChange(aboutLink, $event)">
-                    About
+                    <span class="material-symbols-rounded">badge</span>
+                    {{ t('about') }}
                 </a>
             </li>
 <!--            <li>-->
@@ -67,19 +69,32 @@
                     (mouseenter)="setInteractionTarget(contactLink)"
                     (focus)="setInteractionTarget(contactLink)"
                     (isActiveChange)="handleRouteActiveChange(contactLink, $event)">
-                    Contact
+                    <span class="material-symbols-rounded">mail</span>
+                    {{ t('contact') }}
                 </a>
             </li>
         </ul>
 
+        <label class="language-select">
+            <span class="sr-only">{{ t('languageSelectLabel') }}</span>
+            <select
+                [value]="language()"
+                (change)="setLanguage($event)"
+                [attr.aria-label]="t('languageSelectLabel')"
+            >
+                <option value="en">🇺🇸 {{ t('languageEnglish') }}</option>
+                <option value="he">🇮🇱 {{ t('languageHebrew') }}</option>
+            </select>
+        </label>
+
         <button
-            class="theme-toggle"
+            class="utility-toggle theme-toggle"
             type="button"
             (click)="toggleTheme($event)"
-            [attr.aria-label]="'Switch to ' + (theme() === 'light' ? 'dark' : 'light') + ' theme'"
+            [attr.aria-label]="theme() === 'light' ? t('switchToDarkTheme') : t('switchToLightTheme')"
             [attr.aria-pressed]="theme() === 'dark'"
         >
-            <span class="theme-label">{{ theme() === 'light' ? 'Dark mode' : 'Light mode' }}</span>
+            <span class="utility-label">{{ theme() === 'light' ? t('themeDark') : t('themeLight') }}</span>
         </button>
     </nav>
 </header>

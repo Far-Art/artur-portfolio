@@ -1,68 +1,68 @@
 <div class="contact">
     <div class="container">
-        <h1 class="page-title">Get In Touch</h1>
+        <h1 class="page-title">{{ t('contactTitle') }}</h1>
         <p class="page-description">
-            Have a project in mind or want to collaborate? I'd love to hear from you!
+            {{ t('contactDescription') }}
         </p>
 
         <div class="contact-content">
             <div class="form-section">
                 <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
                     <div class="form-group">
-                        <label for="name">Name *</label>
+                        <label for="name">{{ t('name') }}</label>
                         <input
                             type="text"
                             id="name"
                             formControlName="name"
-                            placeholder="Your name"
+                            [placeholder]="t('namePlaceholder')"
                             [class.error]="isFieldInvalid('name')"
                         />
                         @if (isFieldInvalid('name')) {
-                            <span class="error-message">Name is required</span>
+                            <span class="error-message">{{ t('nameRequired') }}</span>
                         }
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email *</label>
+                        <label for="email">{{ t('email') }}</label>
                         <input
                             type="email"
                             id="email"
                             formControlName="email"
-                            placeholder="your.email@example.com"
+                            [placeholder]="t('emailPlaceholder')"
                             [class.error]="isFieldInvalid('email')"
                         />
                         @if (isFieldInvalid('email')) {
                             <span class="error-message">
                 @if (contactForm.get('email')?.hasError('required')) {
-                    Email is required
+                    {{ t('emailRequired') }}
                 } @else if (contactForm.get('email')?.hasError('email')) {
-                    Please enter a valid email
+                    {{ t('emailInvalid') }}
                 }
               </span>
                         }
                     </div>
 
                     <div class="form-group">
-                        <label for="subject">Subject</label>
+                        <label for="subject">{{ t('subject') }}</label>
                         <input
                             type="text"
                             id="subject"
                             formControlName="subject"
-                            placeholder="Project discussion, collaboration, etc."
+                            [placeholder]="t('subjectPlaceholder')"
                         />
                     </div>
 
                     <div class="form-group">
-                        <label for="message">Message *</label>
+                        <label for="message">{{ t('message') }}</label>
                         <textarea
                             id="message"
                             formControlName="message"
                             rows="6"
-                            placeholder="Tell me about your project or inquiry..."
+                            [placeholder]="t('messagePlaceholder')"
                             [class.error]="isFieldInvalid('message')"
                         ></textarea>
                         @if (isFieldInvalid('message')) {
-                            <span class="error-message">Message is required</span>
+                            <span class="error-message">{{ t('messageRequired') }}</span>
                         }
                     </div>
 
@@ -78,9 +78,9 @@
 
                     <button type="submit" class="submit-btn" [disabled]="contactForm.invalid || isSubmitting()">
                         @if (isSubmitting()) {
-                            Sending...
+                            {{ t('sending') }}
                         } @else {
-                            Send Message
+                            {{ t('sendMessage') }}
                         }
                     </button>
                 </form>
