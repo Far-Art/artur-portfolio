@@ -57,5 +57,5 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 
 ## Styles
 
-- Prefer nested SCSS structure when writing component styles.
+- Nest related selectors when writing SCSS component styles.
 - Do NOT shorten nested class names with `&-...`; write the full nested selector name explicitly.
