@@ -1,5 +1,5 @@
 .about {
-    min-height: 100vh;
+    min-height: 100svh;
     padding: 4rem 0;
 }
 
@@ -250,8 +250,17 @@
 }
 
 @media (max-width: 768px) {
+    .about {
+        padding: 1.5rem 0 0;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
     .page-title {
         font-size: 2.5rem;
+        margin-bottom: 2rem;
     }
 
     .transition-lab {
@@ -281,5 +290,41 @@
 
     .interests-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 420px) {
+    .container {
+        padding: 0;
+    }
+
+    .page-title {
+        font-size: 2.15rem;
+    }
+
+    .lead {
+        font-size: 1.2rem;
+    }
+
+    .intro,
+    .skills,
+    .education {
+        margin-bottom: 3rem;
+    }
+
+    .intro-text p {
+        font-size: 1rem;
+        line-height: 1.65;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .skill-item,
+    .timeline-content,
+    .interest-card {
+        padding: 1rem;
     }
 }

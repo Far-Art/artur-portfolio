@@ -1,6 +1,6 @@
 .project-detail,
 .not-found {
-    min-height: 100vh;
+    min-height: 100svh;
     padding: 3rem 0 1rem;
 }
 
@@ -207,5 +207,52 @@
 @media (max-width: 960px) {
     .project-hero {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .project-detail,
+    .not-found {
+        padding-top: 1.5rem;
+    }
+
+    .project-hero {
+        padding: 1rem;
+        border-radius: var(--radius-medium);
+    }
+
+    .project-title {
+        font-size: 2.4rem;
+        letter-spacing: -0.045em;
+    }
+
+    .project-description {
+        font-size: 1rem;
+        line-height: 1.65;
+    }
+
+    .action-link {
+        width: 100%;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 420px) {
+    .project-title {
+        font-size: 2rem;
+    }
+
+    .summary-card,
+    .project-card,
+    .not-found .container {
+        padding: 1rem;
+        border-radius: var(--radius-medium);
+    }
+
+    .highlights-list li {
+        flex-basis: 100%;
     }
 }

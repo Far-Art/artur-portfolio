@@ -480,7 +480,8 @@
     }
 
     .hero-title {
-        font-size: clamp(2.6rem, 14vw, 4.2rem);
+        font-size: 3.2rem;
+        letter-spacing: -0.045em;
     }
 
     .signal-grid {
@@ -493,6 +494,102 @@
 
     .cta {
         align-items: flex-start;
+    }
+}
+
+@media (max-width: 640px) {
+    .brand-stage {
+        min-height: 92svh;
+    }
+
+    .brand-overlay {
+        width: min(100%, 20rem);
+        translate: -50% calc(-50% + 4.75rem + 1.25rem * var(--brand-progress));
+    }
+
+    .brand-overlay-container {
+        gap: 0.8rem;
+    }
+
+    .brand-overlay-kicker {
+        font-size: 0.72rem;
+        letter-spacing: 0.62em;
+        text-indent: 0.62em;
+    }
+
+    .brand-overlay-title {
+        gap: 0.8rem;
+        font-size: 1.55rem;
+        letter-spacing: 0.26ch;
+        text-indent: 0.26ch;
+    }
+
+    .brand-overlay-subtitle {
+        font-size: 0.95rem;
+        line-height: 1.55;
+    }
+
+    .brand-scroll-cue {
+        bottom: 7.25rem;
+    }
+
+    .hero {
+        gap: 1rem;
+    }
+
+    .hero-title {
+        margin-top: 0.8rem;
+        font-size: 2.75rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        line-height: 1.65;
+        margin-bottom: 1.35rem;
+    }
+
+    .hero-action {
+        width: 100%;
+    }
+
+    .hero-panel,
+    .capability-card,
+    .project-card,
+    .principles,
+    .process,
+    .cta {
+        padding: 1rem;
+        border-radius: var(--radius-medium);
+    }
+}
+
+@media (max-width: 420px) {
+    .brand-overlay {
+        width: min(100%, 18rem);
+    }
+
+    .brand-overlay-kicker {
+        letter-spacing: 0.42em;
+        text-indent: 0.42em;
+    }
+
+    .brand-overlay-title {
+        gap: 0.55rem;
+        font-size: 1.28rem;
+        letter-spacing: 0.18ch;
+        text-indent: 0.18ch;
+    }
+
+    .hero-title {
+        font-size: 2.35rem;
+    }
+
+    .signal-card {
+        padding: 0.9rem;
+    }
+
+    .signal-value {
+        font-size: 2rem;
     }
 }
 

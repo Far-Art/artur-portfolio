@@ -105,6 +105,10 @@
 }
 
 @media (max-width: 640px) {
+    .footer {
+        padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+    }
+
     .footer-container {
         width: calc(100% - 1rem);
         padding: 1.5rem 1rem;

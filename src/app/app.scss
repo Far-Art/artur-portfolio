@@ -79,7 +79,10 @@
     --logo-start-top: calc(50svh - 10rem);
     --logo-start-width: clamp(10rem, 28vw, 24rem);
     --logo-end-width: 3.5rem;
-    --logo-end-left: calc(max((100vw - 88rem) / 2 + 1.1rem, 1.1rem) + var(--logo-end-width) / 2);
+    /* Dock 1.1rem inside the navbar's left edge. When the bar is full-width that edge is the
+       header's 1.25rem inline padding; when centered it is (100vw - 88rem) / 2. Taking the max
+       keeps the logo on the bar in both modes instead of poking out on the left in between. */
+    --logo-end-left: calc(max((100vw - 88rem) / 2, 1.25rem) + 1.1rem + var(--logo-end-width) / 2);
     --logo-end-top: 3.5rem;
 
     display: block;
@@ -113,19 +116,39 @@
 @media (max-width: 768px) {
     .fa-main {
         padding-inline: 1rem;
-        padding-bottom: 3rem;
+        padding-top: 5.5rem;
+        padding-bottom: calc(2.5rem + env(safe-area-inset-bottom));
     }
 
     .brand-logo-link {
         --logo-start-top: calc(50svh - 5.5rem);
-        --logo-end-top: 2.9rem;
         --logo-start-width: clamp(10rem, 42vw, 18rem);
-        --logo-end-width: 2.7rem;
-        --logo-end-left: calc(0.9rem + var(--logo-end-width) / 2);
     }
 
     .fa-grid {
         background-size: 3.5rem 3.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .fa-main {
+        /* clear the single-row top navbar */
+        padding-top: 6rem;
+    }
+
+    .brand-logo-link {
+        /* the compact bar is shorter, so the docked logo shrinks and recenters on it */
+        --logo-end-width: 2.7rem;
+        --logo-end-top: 2.55rem;
+        /* inset from the navbar's left edge so the logo sits on the bar, not against it */
+        --logo-end-left: calc(1.6rem + var(--logo-end-width) / 2);
+    }
+}
+
+@media (max-width: 420px) {
+    .fa-main {
+        padding-inline: 0.75rem;
+        padding-bottom: calc(2.5rem + env(safe-area-inset-bottom));
     }
 }
 

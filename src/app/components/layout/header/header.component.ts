@@ -3,6 +3,7 @@ import {
     afterNextRender,
     ChangeDetectionStrategy,
     Component,
+    DestroyRef,
     ElementRef,
     computed,
     effect,
@@ -38,10 +39,13 @@ interface IndicatorState {
 export class HeaderComponent {
     private readonly navLinks = viewChild.required<ElementRef<HTMLElement>>('navLinks');
     private readonly document = inject(DOCUMENT);
+    private readonly destroyRef = inject(DestroyRef);
     private readonly i18n = inject(I18nService);
     private readonly themeService = inject(ThemeService);
     readonly theme = this.themeService.theme;
     readonly language = this.i18n.language;
+    // On compact viewports the language control shows only the flag to save space.
+    readonly compactLanguage = signal(false);
     private readonly brandTransitionService = inject(BrandTransitionService);
     private readonly activeTarget = signal<HTMLElement | null>(null);
     private readonly interactionTarget = signal<HTMLElement | null>(null);
@@ -82,10 +86,26 @@ export class HeaderComponent {
         });
 
         afterNextRender(() => {
-            requestAnimationFrame(() => {
-                this.syncActiveTargetFromDom();
-                this.syncIndicatorToCurrentTarget();
-            });
+            requestAnimationFrame(() => this.refreshIndicator());
+
+            // On a fresh page load `routerLinkActive` may apply the `active` class after the
+            // first render, and the icon font loads later still and reflows the links. Either
+            // would leave the indicator mispositioned or hidden until the next hover. Re-derive
+            // the active target and resync once fonts are ready and on any later layout change.
+            this.document.fonts?.ready.then(() => this.refreshIndicator());
+
+            const view = this.document.defaultView;
+            if (view && 'ResizeObserver' in view) {
+                const observer = new view.ResizeObserver(() => this.refreshIndicator());
+                observer.observe(this.navLinks().nativeElement);
+                this.destroyRef.onDestroy(() => observer.disconnect());
+            }
+
+            const mediaQuery = view?.matchMedia('(max-width: 960px)');
+            if (mediaQuery) {
+                this.compactLanguage.set(mediaQuery.matches);
+                mediaQuery.addEventListener('change', (event) => this.compactLanguage.set(event.matches));
+            }
         });
     }
 
@@ -173,6 +193,11 @@ export class HeaderComponent {
     }
 
     handleViewportChange(): void {
+        this.syncIndicatorToCurrentTarget();
+    }
+
+    private refreshIndicator(): void {
+        this.syncActiveTargetFromDom();
         this.syncIndicatorToCurrentTarget();
     }
 

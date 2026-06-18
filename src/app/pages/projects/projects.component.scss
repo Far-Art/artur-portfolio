@@ -1,5 +1,5 @@
 .projects {
-    min-height: 100vh;
+    min-height: 100svh;
     padding: 3rem 0 1rem;
 }
 
@@ -173,11 +173,45 @@
 }
 
 @media (max-width: 768px) {
+    .projects {
+        padding-top: 1.5rem;
+    }
+
+    .page-title {
+        font-size: 2.7rem;
+        letter-spacing: -0.045em;
+    }
+
     .filters {
         gap: 0.5rem;
     }
 
     .filter-btn {
         padding: 0.5rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card {
+        padding: 1rem;
+        border-radius: var(--radius-medium);
+    }
+
+    .project-title {
+        font-size: 1.45rem;
+    }
+
+    .project-visual {
+        padding: 0.9rem;
+        border-radius: 1rem;
+    }
+
+    .filter-btn {
+        flex: 1 1 auto;
+        min-height: 2.75rem;
     }
 }

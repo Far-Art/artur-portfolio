@@ -24,19 +24,6 @@
             </li>
             <li>
                 <a
-                    #homeLink
-                    routerLink="/"
-                    routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: true }"
-                    (mouseenter)="setInteractionTarget(homeLink)"
-                    (focus)="setInteractionTarget(homeLink)"
-                    (isActiveChange)="handleRouteActiveChange(homeLink, $event)">
-                    <span class="material-symbols-rounded">home</span>
-                    {{ t('home') }}
-                </a>
-            </li>
-            <li>
-                <a
                     #aboutLink
                     routerLink="/about"
                     routerLinkActive="active"
@@ -75,26 +62,31 @@
             </li>
         </ul>
 
-        <label class="language-select">
-            <span class="sr-only">{{ t('languageSelectLabel') }}</span>
-            <select
-                [value]="language()"
-                (change)="setLanguage($event)"
-                [attr.aria-label]="t('languageSelectLabel')"
-            >
-                <option value="en">🇺🇸 {{ t('languageEnglish') }}</option>
-                <option value="he">🇮🇱 {{ t('languageHebrew') }}</option>
-            </select>
-        </label>
+        <div class="nav-utilities">
+            <label class="language-select">
+                <span class="sr-only">{{ t('languageSelectLabel') }}</span>
+                <select
+                    [value]="language()"
+                    (change)="setLanguage($event)"
+                    [attr.aria-label]="t('languageSelectLabel')"
+                >
+                    <option value="en">{{ compactLanguage() ? '🇺🇸' : '🇺🇸 ' + t('languageEnglish') }}</option>
+                    <option value="he">{{ compactLanguage() ? '🇮🇱' : '🇮🇱 ' + t('languageHebrew') }}</option>
+                </select>
+            </label>
 
-        <button
-            class="utility-toggle theme-toggle"
-            type="button"
-            (click)="toggleTheme($event)"
-            [attr.aria-label]="theme() === 'light' ? t('switchToDarkTheme') : t('switchToLightTheme')"
-            [attr.aria-pressed]="theme() === 'dark'"
-        >
-            <span class="utility-label">{{ theme() === 'light' ? t('themeDark') : t('themeLight') }}</span>
-        </button>
+            <button
+                class="utility-toggle theme-toggle"
+                type="button"
+                (click)="toggleTheme($event)"
+                [attr.aria-label]="theme() === 'light' ? t('switchToDarkTheme') : t('switchToLightTheme')"
+                [attr.aria-pressed]="theme() === 'dark'"
+            >
+                <span class="material-symbols-rounded" aria-hidden="true">
+                    {{ theme() === 'light' ? 'dark_mode' : 'light_mode' }}
+                </span>
+                <span class="utility-label">{{ theme() === 'light' ? t('themeDark') : t('themeLight') }}</span>
+            </button>
+        </div>
     </nav>
 </header>
