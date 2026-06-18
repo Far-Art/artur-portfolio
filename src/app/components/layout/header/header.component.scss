@@ -263,8 +263,10 @@
         width: 100%;
         margin: 0;
         gap: 0.5rem;
-        /* leave room on the left for the docked brand logo, which sits on the bar */
-        padding: 0.5rem 0.7rem 0.5rem 3.4rem;
+        /* reserve room for the docked brand logo on the inline-start side (left in LTR,
+           right in RTL) so it sits on the bar; logical padding flips with direction */
+        padding-block: 0.5rem;
+        padding-inline: 3.4rem 0.7rem;
         border-radius: 1.1rem;
         min-height: 3.5rem;
     }
@@ -297,11 +299,6 @@
     .nav-indicator {
         border-radius: 0.85rem;
     }
-
-    :host-context([dir='rtl']) .nav-container {
-        margin-inline: 0 auto;
-        padding: 0.45rem 0.5rem;
-    }
 }
 
 @media (max-width: 420px) {
@@ -321,10 +318,6 @@
 
     .nav-links a {
         padding: 0.45rem 0.4rem;
-    }
-
-    :host-context([dir='rtl']) .nav-container {
-        padding: 0.45rem 0.5rem;
     }
 }
 

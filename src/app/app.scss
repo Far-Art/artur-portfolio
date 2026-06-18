@@ -102,6 +102,15 @@
     }
 }
 
+/* In RTL the logo mirrors to the right. `left` is a physical property, so we flip the
+   start/end positions to their distance-from-the-right equivalents (100vw - LTR value).
+   The navbar grid already mirrors on its own, so the docked logo lands on the empty
+   right-hand column. */
+:host-context([dir='rtl']) .brand-logo-link {
+    --logo-start-left: calc(48% - 1em);
+    --logo-end-left: calc(100vw - max((100vw - 88rem) / 2, 1.25rem) - 1.1rem - var(--logo-end-width) / 2);
+}
+
 @keyframes float-orb {
     0%,
     100% {
@@ -142,6 +151,10 @@
         --logo-end-top: 2.55rem;
         /* inset from the navbar's left edge so the logo sits on the bar, not against it */
         --logo-end-left: calc(1.6rem + var(--logo-end-width) / 2);
+    }
+
+    :host-context([dir='rtl']) .brand-logo-link {
+        --logo-end-left: calc(100vw - 1.6rem - var(--logo-end-width) / 2);
     }
 }
 
