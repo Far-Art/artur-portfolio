@@ -12,6 +12,8 @@ export interface ContactSubmissionResult {
     providedIn: 'root'
 })
 export class ContactService {
+    private readonly formToken = '94e503c6a6a582cd36fedca56ff75a33';
+    private readonly endpoint = `https://formsubmit.co/ajax/${this.formToken}`;
     private readonly i18n = inject(I18nService);
 
     isSubmitting = signal(false);
@@ -20,9 +22,7 @@ export class ContactService {
         this.isSubmitting.set(true);
 
         try {
-            // TODO: Replace with actual API call
-            // For now, simulate API call with a delay
-            await this.simulateApiCall(formData);
+            await this.sendEmail(formData);
 
             return {
                 success: true,
@@ -38,10 +38,30 @@ export class ContactService {
         }
     }
 
-    private simulateApiCall(data: ContactForm): Promise<void> {
-        return new Promise((resolve) => {
-            console.log('Contact form submission:', data);
-            setTimeout(resolve, 1500);
+    private async sendEmail(formData: ContactForm): Promise<void> {
+        const subject = formData.subject?.trim() || `Portfolio contact from ${formData.name}`;
+
+        const payload: Record<string, string> = {
+            name: formData.name,
+            email: formData.email,
+            subject,
+            message: formData.message,
+            _subject: subject,
+            _template: 'table',
+            _captcha: 'false'
+        };
+
+        const response = await fetch(this.endpoint, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
         });
+
+        if (!response.ok) {
+            throw new Error(`Contact form request failed with status ${response.status}`);
+        }
     }
 }
