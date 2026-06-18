@@ -1,304 +1,306 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-    color-scheme: light;
-    --bg-primary: #f4efe6;
-    --bg-secondary: rgba(255, 250, 242, 0.82);
-    --bg-elevated: rgba(255, 255, 255, 0.7);
-    --bg-strong: #fff8ee;
-    --text-primary: #17161d;
-    --text-secondary: #4f4a57;
-    --text-tertiary: #6c6674;
-    --border-color: rgba(23, 22, 29, 0.12);
-    --border-strong: rgba(23, 22, 29, 0.18);
-    --primary-color: #0f766e;
-    --primary-color-dark: #0b5450;
-    --primary-color-light: rgba(15, 118, 110, 0.14);
-    --secondary-color: #c96b2c;
-    --secondary-color-light: rgba(201, 107, 44, 0.12);
-    --accent-color: #164e63;
-    --success-color: #2f855a;
-    --success-color-light: rgba(47, 133, 90, 0.14);
-    --error-color: #c2410c;
-    --error-color-light: rgba(194, 65, 12, 0.14);
-    --shadow-soft: 0 22px 60px rgba(30, 24, 20, 0.08);
-    --shadow-medium: 0 24px 80px rgba(27, 20, 18, 0.12);
-    --radius-large: 2rem;
-    --radius-medium: 1.25rem;
-    --radius-small: 0.875rem;
-    --page-transition-duration: 420ms;
-    --page-transition-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  color-scheme: light;
+  --bg-primary: #f4efe6;
+  --bg-secondary: rgba(255, 250, 242, 0.82);
+  --bg-elevated: rgba(255, 255, 255, 0.7);
+  --bg-strong: #fff8ee;
+  --text-primary: #17161d;
+  --text-secondary: #4f4a57;
+  --text-tertiary: #6c6674;
+  --border-color: rgba(23, 22, 29, 0.12);
+  --border-strong: rgba(23, 22, 29, 0.18);
+  --primary-color: #0f766e;
+  --primary-color-dark: #0b5450;
+  --primary-color-light: rgba(15, 118, 110, 0.14);
+  --secondary-color: #c96b2c;
+  --secondary-color-light: rgba(201, 107, 44, 0.12);
+  --accent-color: #164e63;
+  --success-color: #2f855a;
+  --success-color-light: rgba(47, 133, 90, 0.14);
+  --error-color: #c2410c;
+  --error-color-light: rgba(194, 65, 12, 0.14);
+  --shadow-soft: 0 22px 60px rgba(30, 24, 20, 0.08);
+  --shadow-medium: 0 24px 80px rgba(27, 20, 18, 0.12);
+  --radius-large: 2rem;
+  --radius-medium: 1.25rem;
+  --radius-small: 0.875rem;
+  --page-transition-duration: 420ms;
+  --page-transition-easing: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @view-transition {
-    navigation: auto;
+  navigation: auto;
 }
 
 [data-theme='dark'] {
-    color-scheme: dark;
-    --bg-primary: #121418;
-    --bg-secondary: rgba(22, 26, 31, 0.82);
-    --bg-elevated: rgba(33, 37, 43, 0.8);
-    --bg-strong: #1a1f25;
-    --text-primary: #f5efe7;
-    --text-secondary: #cbc2b8;
-    --text-tertiary: #968b80;
-    --border-color: rgba(245, 239, 231, 0.1);
-    --border-strong: rgba(245, 239, 231, 0.16);
-    --primary-color: #54c7be;
-    --primary-color-dark: #27a39a;
-    --primary-color-light: rgba(84, 199, 190, 0.14);
-    --secondary-color: #f0a166;
-    --secondary-color-light: rgba(240, 161, 102, 0.14);
-    --accent-color: #7cc7dc;
-    --success-color: #64d39b;
-    --success-color-light: rgba(100, 211, 155, 0.14);
-    --error-color: #ff8c66;
-    --error-color-light: rgba(255, 140, 102, 0.14);
-    --shadow-soft: 0 22px 60px rgba(0, 0, 0, 0.22);
-    --shadow-medium: 0 24px 80px rgba(0, 0, 0, 0.34);
+  color-scheme: dark;
+  --bg-primary: #121418;
+  --bg-secondary: rgba(22, 26, 31, 0.82);
+  --bg-elevated: rgba(33, 37, 43, 0.8);
+  --bg-strong: #1a1f25;
+  --text-primary: #f5efe7;
+  --text-secondary: #cbc2b8;
+  --text-tertiary: #968b80;
+  --border-color: rgba(245, 239, 231, 0.1);
+  --border-strong: rgba(245, 239, 231, 0.16);
+  --primary-color: #54c7be;
+  --primary-color-dark: #27a39a;
+  --primary-color-light: rgba(84, 199, 190, 0.14);
+  --secondary-color: #f0a166;
+  --secondary-color-light: rgba(240, 161, 102, 0.14);
+  --accent-color: #7cc7dc;
+  --success-color: #64d39b;
+  --success-color-light: rgba(100, 211, 155, 0.14);
+  --error-color: #ff8c66;
+  --error-color-light: rgba(255, 140, 102, 0.14);
+  --shadow-soft: 0 22px 60px rgba(0, 0, 0, 0.22);
+  --shadow-medium: 0 24px 80px rgba(0, 0, 0, 0.34);
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
-    min-width: 320px;
-    background: radial-gradient(circle at top left, rgba(15, 118, 110, 0.12), transparent 24rem),
-    radial-gradient(circle at 85% 12%, rgba(201, 107, 44, 0.12), transparent 20rem),
-    var(--bg-primary);
-    color: var(--text-primary);
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    line-height: 1.5;
+  margin: 0;
+  min-width: 320px;
+  background: radial-gradient(circle at top left, rgba(15, 118, 110, 0.12), transparent 24rem),
+  radial-gradient(circle at 85% 12%, rgba(201, 107, 44, 0.12), transparent 20rem),
+  var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  line-height: 1.5;
 }
 
 a,
 button,
 input,
 textarea {
-    font: inherit;
+  font: inherit;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 :focus-visible {
-    outline: 3px solid rgba(15, 118, 110, 0.32);
-    outline-offset: 3px;
+  outline: 3px solid rgba(15, 118, 110, 0.32);
+  outline-offset: 3px;
 }
 
 .skip-link {
-    position: absolute;
-    left: 1rem;
-    top: 1rem;
-    z-index: 100;
-    transform: translateY(-200%);
-    padding: 0.75rem 1rem;
-    border-radius: 999px;
-    background: var(--text-primary);
-    color: var(--bg-primary);
-    text-decoration: none;
-    transition: transform 0.2s ease;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  text-decoration: none;
+  transition: transform 0.2s ease;
 }
 
 .skip-link:focus {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.45rem 0.8rem;
-    border-radius: 999px;
-    border: 1px solid var(--border-color);
-    background: rgba(255, 255, 255, 0.35);
-    color: var(--text-secondary);
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.35);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-wrap-style: balance;
 }
 
 .eyebrow::before {
-    content: '';
-    width: 0.45rem;
-    height: 0.45rem;
-    border-radius: 999px;
-    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  content: '';
+  width: 0.45rem;
+  height: 0.45rem;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
 }
 
 .pill-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    padding: 0;
-    margin: 0;
-    list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.55rem 0.85rem;
-    border-radius: 999px;
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    //
-    font-size: 0.84rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  //
+  font-size: 0.84rem;
 }
 
 .section-heading {
-    max-width: 44rem;
-    margin-bottom: 2.5rem;
+  max-width: 44rem;
+  margin-bottom: 2.5rem;
 }
 
 .section-heading h2 {
-    margin: 1rem 0 0.85rem;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    line-height: 1.02;
-    letter-spacing: -0.05em;
+  margin: 1rem 0 0.85rem;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
 }
 
 .section-heading p {
-    margin: 0;
-    color: var(--text-secondary);
-    font-size: 1.05rem;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
 }
 
 @keyframes page-enter {
-    from {
-        opacity: 0;
-        transform: translate3d(0, 2rem, 0) scale(0.985);
-    }
+  from {
+    opacity: 0;
+    transform: translate3d(0, 2rem, 0) scale(0.985);
+  }
 
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1);
-    }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
 }
 
 @keyframes page-exit {
-    from {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1);
-    }
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
 
-    to {
-        opacity: 0;
-        transform: translate3d(0, -1.5rem, 0) scale(0.99);
-    }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -1.5rem, 0) scale(0.99);
+  }
 }
 
 ::view-transition-group(route-content) {
-    z-index: 1;
-    animation-duration: var(--page-transition-duration);
-    animation-timing-function: var(--page-transition-easing);
+  z-index: 1;
+  animation-duration: var(--page-transition-duration);
+  animation-timing-function: var(--page-transition-easing);
 }
 
 ::view-transition-old(route-content),
 ::view-transition-new(route-content) {
-    animation-duration: var(--page-transition-duration);
-    animation-timing-function: var(--page-transition-easing);
+  animation-duration: var(--page-transition-duration);
+  animation-timing-function: var(--page-transition-easing);
 }
 
 ::view-transition-old(route-content) {
-    animation-name: page-exit;
+  animation-name: page-exit;
 }
 
 ::view-transition-new(route-content) {
-    animation-name: page-enter;
+  animation-name: page-enter;
 }
 
 html[data-local-transition] .fa-main {
-    view-transition-name: none;
+  view-transition-name: none;
 }
 
 html[data-theme-transition]::view-transition-old(root),
 html[data-theme-transition]::view-transition-new(root) {
-    animation: none;
-    mix-blend-mode: normal;
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 html[data-theme-transition]::view-transition-group(root) {
-    animation: none;
+  animation: none;
 }
 
 html[data-theme-transition]::view-transition-image-pair(root) {
-    isolation: auto;
+  isolation: auto;
 }
 
 html[data-theme-transition] .fa-main {
-    view-transition-name: none;
+  view-transition-name: none;
 }
 
 html[data-theme-transition]::view-transition-old(root) {
-    z-index: 1;
+  z-index: 1;
 }
 
 html[data-theme-transition]::view-transition-new(root) {
-    z-index: 2;
-    clip-path: circle(0 at var(--theme-reveal-x) var(--theme-reveal-y));
+  z-index: 2;
+  clip-path: circle(0 at var(--theme-reveal-x) var(--theme-reveal-y));
 }
 
 .material-symbols-rounded {
-    font-variation-settings: 'FILL' 1,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 48
+  font-variation-settings: 'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
 }
 
 @media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
+  html {
+    scroll-behavior: auto;
+  }
 
-    ::view-transition-group(route-content),
-    ::view-transition-old(route-content),
-    ::view-transition-new(route-content) {
-        animation-duration: 1ms;
-    }
+  ::view-transition-group(route-content),
+  ::view-transition-old(route-content),
+  ::view-transition-new(route-content) {
+    animation-duration: 1ms;
+  }
 }
 
 @media (max-width: 640px) {
-    body {
-        line-height: 1.55;
-    }
+  body {
+    line-height: 1.55;
+  }
 
-    .eyebrow {
-        max-width: 100%;
-        padding: 0.4rem 0.65rem;
-        font-size: 0.7rem;
-        letter-spacing: 0.04em;
-        line-height: 1.25;
-    }
+  .eyebrow {
+    max-width: 100%;
+    padding: 0.4rem 0.65rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    line-height: 1.25;
+  }
 
-    .section-heading {
-        margin-bottom: 1.5rem;
-    }
+  .section-heading {
+    margin-bottom: 1.5rem;
+  }
 
-    .section-heading h2 {
-        font-size: clamp(1.8rem, 10vw, 2.65rem);
-        letter-spacing: -0.04em;
-    }
+  .section-heading h2 {
+    font-size: clamp(1.8rem, 10vw, 2.65rem);
+    letter-spacing: -0.04em;
+  }
 
-    .section-heading p {
-        font-size: 1rem;
-    }
+  .section-heading p {
+    font-size: 1rem;
+  }
 }
