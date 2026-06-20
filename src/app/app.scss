@@ -107,7 +107,6 @@
    The navbar grid already mirrors on its own, so the docked logo lands on the empty
    right-hand column. */
 :host-context([dir='rtl']) .brand-logo-link {
-    --logo-start-left: calc(48% - 1em);
     --logo-end-left: calc(100vw - max((100vw - 88rem) / 2, 1.25rem) - 1.1rem - var(--logo-end-width) / 2);
 }
 
