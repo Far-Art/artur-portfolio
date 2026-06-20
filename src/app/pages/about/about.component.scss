@@ -74,21 +74,10 @@
     color: white;
 }
 
-.btn-primary:hover {
-    background: var(--primary-color-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
 .btn-secondary {
     background: transparent;
     border-color: var(--primary-color);
     color: var(--primary-color);
-}
-
-.btn-secondary:hover {
-    background: var(--primary-color);
-    color: white;
 }
 
 .skills {
@@ -123,11 +112,6 @@
     justify-content: space-between;
     align-items: center;
     transition: all 0.3s ease;
-}
-
-.skill-item:hover {
-    border-color: var(--primary-color);
-    transform: translateY(-2px);
 }
 
 .skill-name {
@@ -227,11 +211,6 @@
     transition: all 0.3s ease;
 }
 
-.interest-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
 .interest-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
@@ -247,6 +226,29 @@
 .interest-description {
     color: var(--text-secondary);
     line-height: 1.6;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover {
+        background: var(--primary-color-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-secondary:hover {
+        background: var(--primary-color);
+        color: white;
+    }
+
+    .skill-item:hover {
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+    }
+
+    .interest-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
 }
 
 @media (max-width: 768px) {

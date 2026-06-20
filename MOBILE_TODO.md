@@ -80,10 +80,11 @@ ground-up rebuild.
     rules exist **only** inside the 768px media query with no base styles and no
     matching elements in the template. Dead code.
 
-- [ ] **Confirm hover-only affordances degrade on touch**
-  - The header nav indicator and all `:hover` lift effects are decorative and
-    degrade fine, but worth a quick touch-device pass to confirm nothing
-    important is hover-gated.
+- [x] **Confirm hover-only affordances degrade on touch**
+  - Fixed sticky touch hover states by wrapping decorative `:hover` lifts,
+    shadows, and color changes in `(hover: hover) and (pointer: fine)` media
+    queries across the header, footer, and page styles. Keyboard focus styles
+    remain active outside the hover media query.
 
 - [ ] **Optional: PWA basics**
   - No `apple-mobile-web-app-capable` / web app manifest. Only relevant if you

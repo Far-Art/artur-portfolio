@@ -152,10 +152,6 @@
     background-color 0.25s ease;
 }
 
-.hero-action:hover {
-    transform: translateY(-2px);
-}
-
 .hero-action-primary {
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     color: white;
@@ -414,10 +410,6 @@
     font-weight: 600;
 }
 
-.project-link:hover {
-    color: var(--primary-color);
-}
-
 .principles,
 .process {
     display: grid;
@@ -450,6 +442,16 @@
 
 .cta-copy {
     max-width: 40rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .hero-action:hover {
+        transform: translateY(-2px);
+    }
+
+    .project-link:hover {
+        color: var(--primary-color);
+    }
 }
 
 @media (max-width: 1080px) {

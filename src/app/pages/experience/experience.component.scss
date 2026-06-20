@@ -65,12 +65,6 @@
     border-radius: var(--radius-large);
 }
 
-.experience-card:hover {
-    transform: translateX(8px);
-    box-shadow: var(--shadow-medium);
-    border-color: var(--primary-color);
-}
-
 .experience-header {
     margin-bottom: 1.5rem;
 }
@@ -180,9 +174,17 @@
     transition: all 0.3s ease;
 }
 
-.tech-tag:hover {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
+@media (hover: hover) and (pointer: fine) {
+    .experience-card:hover {
+        transform: translateX(8px);
+        box-shadow: var(--shadow-medium);
+        border-color: var(--primary-color);
+    }
+
+    .tech-tag:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+    }
 }
 
 @media (max-width: 768px) {

@@ -70,13 +70,6 @@
     box-shadow 0.25s ease;
 }
 
-.social-link:hover {
-    transform: translateY(-2px);
-    border-color: var(--secondary-color);
-    color: var(--primary-color);
-    box-shadow: 0 1rem 2.4rem rgba(0, 0, 0, 0.13);
-}
-
 .social-link:focus-visible {
     outline: 3px solid var(--primary-color-light);
     outline-offset: 3px;
@@ -112,6 +105,15 @@
     margin: 0;
     color: var(--text-tertiary);
     font-size: 0.9rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .social-link:hover {
+        transform: translateY(-2px);
+        border-color: var(--secondary-color);
+        color: var(--primary-color);
+        box-shadow: 0 1rem 2.4rem rgba(0, 0, 0, 0.13);
+    }
 }
 
 @media (max-width: 768px) {
