@@ -234,30 +234,41 @@ html[data-local-transition] .fa-main {
 }
 
 html[data-theme-transition]::view-transition-old(root),
-html[data-theme-transition]::view-transition-new(root) {
+html[data-theme-transition]::view-transition-new(root),
+html[data-language-transition]::view-transition-old(root),
+html[data-language-transition]::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
 
-html[data-theme-transition]::view-transition-group(root) {
+html[data-theme-transition]::view-transition-group(root),
+html[data-language-transition]::view-transition-group(root) {
   animation: none;
 }
 
-html[data-theme-transition]::view-transition-image-pair(root) {
+html[data-theme-transition]::view-transition-image-pair(root),
+html[data-language-transition]::view-transition-image-pair(root) {
   isolation: auto;
 }
 
-html[data-theme-transition] .fa-main {
+html[data-theme-transition] .fa-main,
+html[data-language-transition] .fa-main {
   view-transition-name: none;
 }
 
-html[data-theme-transition]::view-transition-old(root) {
+html[data-theme-transition]::view-transition-old(root),
+html[data-language-transition]::view-transition-old(root) {
   z-index: 1;
 }
 
 html[data-theme-transition]::view-transition-new(root) {
   z-index: 2;
   clip-path: circle(0 at var(--theme-reveal-x) var(--theme-reveal-y));
+}
+
+html[data-language-transition]::view-transition-new(root) {
+  z-index: 2;
+  clip-path: circle(0 at var(--language-reveal-x) var(--language-reveal-y));
 }
 
 .material-symbols-rounded {

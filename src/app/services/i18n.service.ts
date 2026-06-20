@@ -315,6 +315,20 @@ const translations = {
 export type Language = keyof typeof translations;
 export type TranslationKey = keyof (typeof translations)['en'];
 
+type LanguageTransitionOrigin = {
+    x: number;
+    y: number;
+};
+
+type ViewTransition = {
+    finished: Promise<void>;
+    ready: Promise<void>;
+};
+
+type DocumentWithViewTransition = Document & {
+    startViewTransition?: (callback: () => Promise<void> | void) => ViewTransition;
+};
+
 const projectCategoryTranslationKeys: Record<ProjectCategory, TranslationKey> = {
     web: 'projectCategoryWeb',
     mobile: 'projectCategoryMobile',
@@ -371,25 +385,26 @@ export class I18nService {
     constructor() {
         effect(() => {
             const language = this.selectedLanguage();
-            const direction = this.direction();
-            const htmlElement = this.document.documentElement;
-
-            htmlElement.lang = language;
-            htmlElement.dir = direction;
-            htmlElement.dataset['language'] = language;
-
-            if (isPlatformBrowser(this.platformId)) {
-                window.localStorage.setItem(this.storageKey, language);
-            }
+            this.applyLanguage(language);
         });
     }
 
-    toggleLanguage(): void {
-        this.selectedLanguage.update((language) => (language === 'en' ? 'he' : 'en'));
+    toggleLanguage(origin?: LanguageTransitionOrigin): void {
+        const language = this.selectedLanguage() === 'en' ? 'he' : 'en';
+        this.setLanguage(language, origin);
     }
 
-    setLanguage(language: Language): void {
-        this.selectedLanguage.set(language);
+    setLanguage(language: Language, origin?: LanguageTransitionOrigin): void {
+        if (language === this.selectedLanguage()) {
+            return;
+        }
+
+        if (!origin || !this.canAnimateLanguageTransition()) {
+            this.selectedLanguage.set(language);
+            return;
+        }
+
+        this.runAnimatedLanguageTransition(language, origin);
     }
 
     translate(key: TranslationKey, params: Record<string, string | number> = {}): string {
@@ -433,5 +448,105 @@ export class I18nService {
 
         const storedLanguage = window.localStorage.getItem(this.storageKey);
         return storedLanguage === 'he' ? 'he' : 'en';
+    }
+
+    private applyLanguage(language: Language): void {
+        const htmlElement = this.document.documentElement;
+
+        htmlElement.lang = language;
+        htmlElement.dir = language === 'he' ? 'rtl' : 'ltr';
+        htmlElement.dataset['language'] = language;
+
+        if (isPlatformBrowser(this.platformId)) {
+            window.localStorage.setItem(this.storageKey, language);
+        }
+    }
+
+    private canAnimateLanguageTransition(): boolean {
+        if (!isPlatformBrowser(this.platformId)) {
+            return false;
+        }
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return false;
+        }
+
+        return typeof this.viewTransitionDocument.startViewTransition === 'function';
+    }
+
+    private runAnimatedLanguageTransition(language: Language, origin: LanguageTransitionOrigin): void {
+        const root = this.document.documentElement;
+        const radius = this.getRevealRadius(origin);
+
+        root.style.setProperty('--language-reveal-x', `${origin.x}px`);
+        root.style.setProperty('--language-reveal-y', `${origin.y}px`);
+        root.style.setProperty('--language-reveal-radius', `${radius}px`);
+        root.setAttribute('data-language-transition', language);
+
+        const transition = this.viewTransitionDocument.startViewTransition?.(() => {
+            this.selectedLanguage.set(language);
+            this.applyLanguage(language);
+        });
+
+        if (!transition) {
+            root.removeAttribute('data-language-transition');
+            this.clearTransitionStyles();
+            return;
+        }
+
+        transition.ready
+            .then(() => this.animateLanguageReveal(origin, radius))
+            .catch(() => undefined)
+            .finally(() => {
+                transition.finished.finally(() => {
+                    requestAnimationFrame(() => {
+                        root.removeAttribute('data-language-transition');
+                        this.clearTransitionStyles();
+                    });
+                });
+            });
+    }
+
+    private getRevealRadius(origin: LanguageTransitionOrigin): number {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const distances = [
+            Math.hypot(origin.x, origin.y),
+            Math.hypot(width - origin.x, origin.y),
+            Math.hypot(origin.x, height - origin.y),
+            Math.hypot(width - origin.x, height - origin.y)
+        ];
+
+        return Math.max(...distances);
+    }
+
+    private clearTransitionStyles(): void {
+        const root = this.document.documentElement;
+        root.style.removeProperty('--language-reveal-x');
+        root.style.removeProperty('--language-reveal-y');
+        root.style.removeProperty('--language-reveal-radius');
+    }
+
+    private async animateLanguageReveal(origin: LanguageTransitionOrigin, radius: number): Promise<void> {
+        const animation = this.document.documentElement.animate(
+            {
+                clipPath: [
+                    `circle(0 at ${origin.x}px ${origin.y}px)`,
+                    `circle(${radius}px at ${origin.x}px ${origin.y}px)`
+                ]
+            },
+            {
+                duration: 1450,
+                easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+                fill: 'both',
+                pseudoElement: '::view-transition-new(root)'
+            }
+        );
+
+        await animation.finished.catch(() => undefined);
+    }
+
+    private get viewTransitionDocument(): DocumentWithViewTransition {
+        return this.document as DocumentWithViewTransition;
     }
 }

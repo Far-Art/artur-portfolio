@@ -122,7 +122,11 @@ export class HeaderComponent {
 
         const language = target.value;
         if (language === 'en' || language === 'he') {
-            this.i18n.setLanguage(language satisfies Language);
+            const bounds = target.getBoundingClientRect();
+            this.i18n.setLanguage(language satisfies Language, {
+                x: bounds.left + bounds.width / 2,
+                y: bounds.top + bounds.height / 2
+            });
         }
     }
 
