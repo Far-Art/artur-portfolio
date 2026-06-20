@@ -263,23 +263,6 @@
         margin-bottom: 2rem;
     }
 
-    .transition-lab {
-        grid-template-columns: 1fr;
-    }
-
-    .transition-lab-copy {
-        position: static;
-    }
-
-    .transition-card-expanded {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            'topline'
-            'title'
-            'summary'
-            'details';
-    }
-
     .intro-content {
         flex-direction: column;
     }

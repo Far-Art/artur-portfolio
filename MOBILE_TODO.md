@@ -62,7 +62,7 @@ ground-up rebuild.
 - [ ] **Add a `theme-color` meta tag** (light + dark) in `src/index.html` so the
   mobile browser chrome matches the page background in each theme.
 
-- [ ] **Contact form mobile autofill** — `src/app/pages/contact/contact.component.html`
+- [x] **Contact form mobile autofill** — `src/app/pages/contact/contact.component.html`
   - Add `autocomplete="name"` / `autocomplete="email"` (and `inputmode="email"`)
     to the inputs so mobile keyboards and autofill behave correctly.
   - (Email is already `type="email"` — good.)
@@ -75,7 +75,7 @@ ground-up rebuild.
 
 ## 🟢 Low — cleanup / nice-to-have
 
-- [ ] **Remove dead CSS** — `src/app/pages/about/about.component.scss:266-280`
+- [x] **Remove dead CSS** — `src/app/pages/about/about.component.scss:266-280`
   - The `.transition-lab`, `.transition-lab-copy`, and `.transition-card-expanded`
     rules exist **only** inside the 768px media query with no base styles and no
     matching elements in the template. Dead code.

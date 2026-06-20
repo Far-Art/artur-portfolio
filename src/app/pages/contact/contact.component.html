@@ -14,6 +14,7 @@
                             type="text"
                             id="name"
                             formControlName="name"
+                            autocomplete="name"
                             [placeholder]="t('namePlaceholder')"
                             [class.error]="isFieldInvalid('name')"
                         />
@@ -28,6 +29,8 @@
                             type="email"
                             id="email"
                             formControlName="email"
+                            autocomplete="email"
+                            inputmode="email"
                             [placeholder]="t('emailPlaceholder')"
                             [class.error]="isFieldInvalid('email')"
                         />
