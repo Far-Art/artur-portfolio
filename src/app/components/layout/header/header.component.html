@@ -65,13 +65,16 @@
         <div class="nav-utilities">
             <label class="language-select">
                 <span class="sr-only">{{ t('languageSelectLabel') }}</span>
+                <span class="language-select-value" aria-hidden="true">
+                    {{ language() === 'en' ? '🇺🇸' : '🇮🇱' }}
+                </span>
                 <select
                     [value]="language()"
                     (change)="setLanguage($event)"
                     [attr.aria-label]="t('languageSelectLabel')"
                 >
-                    <option value="en">{{ compactLanguage() ? '🇺🇸' : '🇺🇸 ' + t('languageEnglish') }}</option>
-                    <option value="he">{{ compactLanguage() ? '🇮🇱' : '🇮🇱 ' + t('languageHebrew') }}</option>
+                    <option value="en">🇺🇸 {{ t('languageEnglish') }}</option>
+                    <option value="he">🇮🇱 {{ t('languageHebrew') }}</option>
                 </select>
             </label>
 

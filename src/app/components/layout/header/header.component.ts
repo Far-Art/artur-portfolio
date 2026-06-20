@@ -44,8 +44,6 @@ export class HeaderComponent {
     private readonly themeService = inject(ThemeService);
     readonly theme = this.themeService.theme;
     readonly language = this.i18n.language;
-    // On compact viewports the language control shows only the flag to save space.
-    readonly compactLanguage = signal(false);
     private readonly brandTransitionService = inject(BrandTransitionService);
     private readonly activeTarget = signal<HTMLElement | null>(null);
     private readonly interactionTarget = signal<HTMLElement | null>(null);
@@ -99,12 +97,6 @@ export class HeaderComponent {
                 const observer = new view.ResizeObserver(() => this.refreshIndicator());
                 observer.observe(this.navLinks().nativeElement);
                 this.destroyRef.onDestroy(() => observer.disconnect());
-            }
-
-            const mediaQuery = view?.matchMedia('(max-width: 960px)');
-            if (mediaQuery) {
-                this.compactLanguage.set(mediaQuery.matches);
-                mediaQuery.addEventListener('change', (event) => this.compactLanguage.set(event.matches));
             }
         });
     }

@@ -152,20 +152,32 @@
     align-items: center;
 }
 
+.language-select-value {
+    display: none;
+}
+
 .language-select select {
     min-width: 7.75rem;
     appearance: none;
+    -webkit-appearance: none;
     border: 1px solid var(--border-color);
     border-radius: 999px;
     padding: 0.8rem 2.25rem 0.8rem 1rem;
     background: var(--bg-elevated);
     color: var(--text-primary);
+    color-scheme: light;
     font-size: 0.78rem;
+    line-height: 1.2;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     transition: transform 0.25s ease,
     border-color 0.25s ease,
     background-color 0.25s ease;
+}
+
+.language-select select option {
+    background: #ffffff;
+    color: #17161d;
 }
 
 .language-select::after {
@@ -233,23 +245,54 @@
     }
 
     .language-select select {
+        position: absolute;
+        inset: 0;
+        width: 100%;
         min-width: 0;
+        height: 100%;
+        opacity: 0;
+        padding: 0;
+    }
+
+    .language-select {
+        width: 2.65rem;
+        min-width: 2.65rem;
         min-height: 2.65rem;
-        padding: 0.55rem 1.6rem 0.55rem 0.7rem;
+        justify-content: center;
+        border: 1px solid var(--border-color);
+        border-radius: 999px;
+        background: var(--bg-elevated);
+        transition: transform 0.25s ease,
+        border-color 0.25s ease,
+        background-color 0.25s ease;
+    }
+
+    .language-select:hover {
+        border-color: var(--primary-color);
+        transform: translateY(-1px);
+    }
+
+    .language-select:focus-within {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 4px;
+        border-color: var(--primary-color);
+    }
+
+    .language-select-value {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         font-size: 1rem;
-        letter-spacing: 0;
+        line-height: 1;
+        pointer-events: none;
     }
 
     .language-select::after {
-        right: 0.6rem;
-    }
-
-    :host-context([dir='rtl']) .language-select select {
-        padding: 0.55rem 0.7rem 0.55rem 1.6rem;
+        display: none;
     }
 
     :host-context([dir='rtl']) .language-select::after {
-        left: 0.72rem;
+        display: none;
     }
 }
 
