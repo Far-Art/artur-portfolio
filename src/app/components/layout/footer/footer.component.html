@@ -11,15 +11,24 @@
         <div class="footer-content">
             <div class="social-links" role="list">
                 @for (link of socialLinks; track link.platform) {
+                    @let openInNewTab = opensInNewTab(link.url);
                     <a
                         [href]="link.url"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        [attr.target]="openInNewTab ? '_blank' : null"
+                        [attr.rel]="openInNewTab ? 'noopener noreferrer' : null"
                         [attr.aria-label]="link.platform"
                         class="social-link"
+                        role="listitem"
+                        (click)="onSocialLinkClick(link)"
                     >
+                        <span class="social-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" focusable="false">
+                                @for (path of socialIconPaths(link.icon); track path) {
+                                    <path [attr.d]="path"></path>
+                                }
+                            </svg>
+                        </span>
                         <span class="social-label">{{ link.platform }}</span>
-                        <span class="social-arrow">/</span>
                     </a>
                 }
             </div>

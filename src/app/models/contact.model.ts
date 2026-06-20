@@ -5,8 +5,10 @@ export interface ContactForm {
     message: string;
 }
 
+export type SocialIcon = 'github' | 'linkedin' | 'email';
+
 export interface SocialLink {
     platform: string;
     url: string;
-    icon: string;
+    icon: SocialIcon;
 }
